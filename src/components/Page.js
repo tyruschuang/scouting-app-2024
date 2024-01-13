@@ -1,16 +1,15 @@
-import {Container, Typography} from "@mui/material";
+import {Box, Container, Typography} from "@mui/material";
 
 export default function Page(props) {
     return (
         <Container maxWidth={"xl"} sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
             pt: "5vh",
-            ...props.sx,
         }}>
-            {props.children}
+            <Box sx={{
+                ...props.sx,
+            }}>
+                {props.children}
+            </Box>
         </Container>
     );
 }
