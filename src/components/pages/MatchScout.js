@@ -6,7 +6,7 @@ import MatchScoutData from "../History";
 
 export default function MatchScout() {
 
-    const data = MatchScoutData();
+    const data = new MatchScoutData();
 
     return (
         <Page>

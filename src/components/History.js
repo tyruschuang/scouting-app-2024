@@ -1,20 +1,20 @@
-export default class History {
+export default class MatchScoutData {
     constructor() {
-        this.history = [];
+        this.data = [];
     }
     push(path) {
-        this.history.push(path);
+        this.data.push(path);
     }
     pop() {
-        this.history.pop();
+        this.data.pop();
     }
     get() {
-        return this.history;
+        return this.data;
     }
     getPrevious() {
-        return this.history[this.history.length - 2];
+        return this.data[this.data.length - 2];
     }
     clear() {
-        this.history = [];
+        this.data = [];
     }
 }
