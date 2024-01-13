@@ -1,5 +1,6 @@
 import Home from "./components/pages/Home";
 import MatchScout from "./components/pages/MatchScout";
+import Credits from "./components/pages/Credits";
 
 export const Constants = {
 
@@ -27,6 +28,12 @@ export const Constants = {
             description: "About page",
             path: "/gambling",
             component: Home,
+        },
+        {
+            title: "Credits",
+            description: "",
+            path: "/credits",
+            component: Credits,
         },
     ]
 
