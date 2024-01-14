@@ -9,6 +9,7 @@ export default function Home() {
         <Page>
             <Stack direction={"column"} spacing={2}>
                 {Constants.pages.map((page) => (
+                    (page.path !== "/" ?
                     <>
                         <Box sx={{
                             py: 3,
@@ -29,7 +30,8 @@ export default function Home() {
                                 <Typography variant={"h4"}>{page.title}</Typography>
                                 <Typography variant={"p"}>{page.description}</Typography>
                         </Box>
-                    </>
+                    </> : <></>
+                    )
                 ))}
             </Stack>
         </Page>
