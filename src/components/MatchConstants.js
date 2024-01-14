@@ -1,9 +1,10 @@
+import MSPrematch from "./pages/matchscout/prematch/MSPrematch";
+
 export const MatchStage = Object.freeze({
     "PRE_MATCH": 0,
     "AUTO": 1,
     "TELEOP": 2,
-    "ENDGAME": 3,
-    "POST_MATCH": 4,
+    "POST_MATCH": 3,
 });
 
 export const DriverStation = Object.freeze({
