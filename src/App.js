@@ -1,5 +1,7 @@
 import {BrowserRouter, Outlet, Route, Routes} from "react-router-dom";
 import Home from "./components/pages/Home";
+import Credits from "./components/pages/Credits";
+
 import NotFound from "./components/pages/NotFound";
 import {Box, CssBaseline, ThemeProvider} from "@mui/material";
 import {theme} from "./Theme";
@@ -18,6 +20,7 @@ export default function App() {
                                 <Route key={page.path} path={page.path} element={<page.component/>}/>
                             ))}
                         </Route>
+                        <Route></Route>
                     </Routes>
                 </BrowserRouter>
             </ThemeProvider>
