@@ -1,6 +1,8 @@
 import Home from "./components/pages/Home";
 import MatchScout from "./components/pages/MatchScout";
 import Credits from "./components/pages/Credits";
+import PitScout from "./components/pages/PitScout";
+
 
 export const Constants = {
 
@@ -21,7 +23,7 @@ export const Constants = {
             title: "Pit Scout",
             description: "About page",
             path: "/pitscout",
-            component: Home,
+            component: PitScout,
         },
         {
             title: "Gambling",
