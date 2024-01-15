@@ -11,7 +11,7 @@ const exampleData = [
     },
     {
         "stage": MatchStage.AUTO,
-        "leave": true,
+        "leave": false,
         "io": [
             {
                 "intake": AutoIntakePosition.PRELOAD,
@@ -22,6 +22,25 @@ const exampleData = [
                 "outtake": OuttakePosition.DROPPED,
             }
         ]
+    },
+    {
+        "stage": MatchStage.TELEOP,
+        "intaked": 0,
+        "amp_outtakes": 0,
+        "speaker_outtakes": 0,
+        "dropped": 0,
+        "missed": 0,
+        "trap": false,
+        "onstage": false,
+        "onstage_others": false,
+    },
+    {
+        "stage": MatchStage.POST_MATCH,
+        "driver_rating": 0,
+        "defense": false,
+        "defense_rating": 0,
+        "defended_who": 9999,
+        "comments": "",
     }
 ]
 
@@ -48,7 +67,6 @@ export default class MatchScoutData {
             "time": new Date(),
         })
         this.data[stage][path] = value;
-        console.log(this.data)
     }
 
     undo() {
@@ -61,23 +79,14 @@ export default class MatchScoutData {
             return entry.stage === this.stage && latestEntry.time - entry.time < 1000;
         })
 
-        console.log(latestEntry)
-        console.log(entriesToUndo)
-
-        // If there are no entries, return
         if (entriesToUndo.length === 0) return;
-
-        // Undo the entries
         entriesToUndo.reverse().forEach((entry) => {
             this.data[entry.stage][entry.path] = entry.value;
         });
 
-        // Remove the entries from the history
         this.history = this.history.filter((entry) => {
             return !entriesToUndo.includes(entry);
         })
-
-        console.log(this.data);
     }
 
     submit() {

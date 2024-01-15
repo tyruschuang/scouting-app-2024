@@ -7,7 +7,6 @@ import Undo from "../Undo";
 
 export default function MSPrematch(props) {
 
-    // const data = props.data
     const [data, _] = useState(props.data)
     const [counter, setCounter] = useState(0)
 

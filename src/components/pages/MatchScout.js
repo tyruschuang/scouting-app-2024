@@ -1,4 +1,4 @@
-import {Box, Button, Container, Divider, FormControl, Stack, Typography} from "@mui/material";
+import {Button, Divider, Stack, Typography} from "@mui/material";
 import Page from "../Page";
 import {useEffect, useMemo, useState} from "react";
 import MatchScoutData from "../MatchScoutData";
