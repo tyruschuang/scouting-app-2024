@@ -1,6 +1,6 @@
 import {AutoIntakePosition, MatchStage, OuttakePosition} from "./MatchConstants";
 
-const exampleData = [
+const defaultData = [
     {
         "stage": MatchStage.PRE_MATCH,
         "team": 9999,
@@ -41,6 +41,9 @@ const exampleData = [
         "defense_rating": 0,
         "defended_who": 9999,
         "comments": "",
+
+        // Extra metadata
+        "timestamp": new Date(),
     }
 ]
 
@@ -49,7 +52,7 @@ export default class MatchScoutData {
 
     constructor() {
         this.stage = MatchStage.PRE_MATCH;
-        this.data = exampleData;
+        this.data = defaultData;
         this.history = [];
         this.historyCounter = 0;
     }
@@ -90,11 +93,12 @@ export default class MatchScoutData {
     }
 
     submit() {
+        console.log(this.data);
         // TODO: submit data to server
     }
 
     reset() {
         this.stage = MatchStage.PRE_MATCH;
-        this.data = [];
+        this.data = defaultData;
     }
 }

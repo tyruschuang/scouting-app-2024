@@ -52,7 +52,6 @@ export default function MatchScout() {
                     <Button fullWidth variant={"outlined"} onClick={() => {
                         data.stage--
                         update()
-                        console.log(data.stage)
                     }}>
                         Previous
                     </Button>
@@ -61,15 +60,21 @@ export default function MatchScout() {
                     <Button fullWidth variant={"outlined"} onClick={() => {
                         data.stage++
                         update()
-                        console.log(data.stage)
                     }}>
                         Next
                     </Button>
                 }
                 {data.stage === MatchStage.POST_MATCH &&
-                    // TODO: Submit button
-                    <>
-                    </>
+                    <Button fullWidth color={"success"} variant={"outlined"} onClick={() => {
+                        // Add extra metadata
+                        data.set(MatchStage.POST_MATCH, "timestamp", Date.now())
+
+                        data.submit()
+                        data.reset()
+                        update()
+                    }}>
+                        Submit
+                    </Button>
                 }
             </Stack>
         </Page>

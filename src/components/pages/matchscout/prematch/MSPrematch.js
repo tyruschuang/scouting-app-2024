@@ -32,7 +32,8 @@ export default function MSPrematch(props) {
                                 />
                             )}
                             onChange={(event, newValue) => {
-                                data.set(MatchStage.PRE_MATCH, "name", newValue)
+                                data.set(MatchStage.PRE_MATCH, "name", newValue);
+                                // TODO: Potentially autofill other data based on name
                                 update()
                             }}
                             isOptionEqualToValue={(option, value) => option.toUpperCase() === value.toUpperCase() || value === ""}
