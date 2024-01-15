@@ -8,9 +8,14 @@ import MSPrematch from "./matchscout/prematch/MSPrematch";
 
 export default function MatchScout() {
 
-    const data = useMemo(() => new MatchScoutData(), []);
+    let data = useMemo(() => new MatchScoutData(), []);
 
     const [currentComponent, setCurrentComponent] = useState(<MSPrematch data={data}/>);
+    const [counter, setCounter] = useState(0)
+
+    const update = () => {
+        setCounter(counter + 1)
+    }
 
     useEffect(() => {
         // eslint-disable-next-line default-case
@@ -28,7 +33,7 @@ export default function MatchScout() {
                 setCurrentComponent(<MSAuto data={data}/>);
                 break;
         }
-    }, [data]);
+    }, [counter]);
 
     return (
         <Page>
@@ -37,15 +42,28 @@ export default function MatchScout() {
                 my: 4
             }}/>
             {currentComponent}
-            <Divider sx={{
+            <Stack direction={"row"} spacing={2} sx={{
                 my: 2
-            }}/>
-            <Button onClick={() => {
-                data.undo()
-            }} fullWidth
-            variant={"outlined"}>
-                Undo
-            </Button>
+            }}>
+                {data.stage !== MatchStage.PRE_MATCH &&
+                    <Button fullWidth color={"secondary"} variant={"contained"} onClick={() => {
+                        data.stage--
+                        update()
+                        console.log(data.stage)
+                    }}>
+                        Previous
+                    </Button>
+                }
+                {data.stage !== MatchStage.POST_MATCH &&
+                    <Button fullWidth color={"secondary"} variant={"contained"} onClick={() => {
+                        data.stage++
+                        update()
+                        console.log(data.stage)
+                    }}>
+                        Next
+                    </Button>
+                }
+            </Stack>
         </Page>
     );
 }

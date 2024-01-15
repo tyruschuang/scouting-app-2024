@@ -14,12 +14,17 @@ import {Scouters} from "../../../Scouters";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import {useEffect, useState} from "react";
 import {Alliance, DriverStation, MatchStage} from "../../../MatchConstants";
+import Undo from "../Undo";
 
 export default function MSPrematch(props) {
 
     // const data = props.data
-    const [data, setData] = useState(props.data)
-    const [driverStation, setDriverStation] = useState(0)
+    const [data, _] = useState(props.data)
+    const [counter, setCounter] = useState(0)
+
+    const update = () => {
+        setCounter(counter + 1)
+    }
 
     return (
         <>
@@ -29,6 +34,7 @@ export default function MSPrematch(props) {
                         <Autocomplete
                             id="name"
                             options={Scouters}
+                            value={data.get(MatchStage.PRE_MATCH, "name")}
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
@@ -39,7 +45,9 @@ export default function MSPrematch(props) {
                             )}
                             onChange={(event, newValue) => {
                                 data.set(MatchStage.PRE_MATCH, "name", newValue)
+                                update()
                             }}
+                            isOptionEqualToValue={(option, value) => option.toUpperCase() === value.toUpperCase() || value === ""}
                         />
                     </FormControl>
                 </Grid2>
@@ -49,8 +57,10 @@ export default function MSPrematch(props) {
                         <Input
                             id="team"
                             type={"number"}
+                            value={data.get(MatchStage.PRE_MATCH, "team")}
                             onChange={(event) => {
                                 data.set(MatchStage.PRE_MATCH, "team", event.target.value)
+                                update()
                             }}
                         />
                     </FormControl>
@@ -59,7 +69,8 @@ export default function MSPrematch(props) {
                     <FormControl fullWidth>
                         <Autocomplete
                             id="alliance"
-                            options={Object.keys(Alliance)}
+                            options={["RED", "BLUE"]}
+                            value={data.get(MatchStage.PRE_MATCH, "alliance")}
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
@@ -70,7 +81,9 @@ export default function MSPrematch(props) {
                             )}
                             onChange={(event, newValue) => {
                                 data.set(MatchStage.PRE_MATCH, "alliance", newValue)
+                                update()
                             }}
+                            isOptionEqualToValue={(option, value) => option.toUpperCase() === value.toUpperCase() || value === ""}
                         />
                     </FormControl>
                 </Grid2>
@@ -78,9 +91,8 @@ export default function MSPrematch(props) {
                     <FormControl fullWidth>
                         <Autocomplete
                             id="driver-station"
-                            options={Object.keys(DriverStation)}
-                            // value={Object.keys(DriverStation)[driverStation]}
-                            value={Object.keys(DriverStation)[data.get(MatchStage.PRE_MATCH, "driver_station")]}
+                            options={["LEFT", "CENTER", "RIGHT"]}
+                            value={data.get(MatchStage.PRE_MATCH, "driver_station")}
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
@@ -90,13 +102,15 @@ export default function MSPrematch(props) {
                                 />
                             )}
                             onChange={(event, newValue) => {
-                                data.set(MatchStage.PRE_MATCH, "driver_station", Object.keys(DriverStation).indexOf(newValue))
-                                setDriverStation(Object.keys(DriverStation).indexOf(newValue))
+                                data.set(MatchStage.PRE_MATCH, "driver_station", newValue)
+                                update()
                             }}
+                            isOptionEqualToValue={(option, value) => option.toUpperCase() === value.toUpperCase() || value === ""}
                         />
                     </FormControl>
                 </Grid2>
             </Grid2>
+            <Undo data={data} update={() => update()}/>
         </>
     );
 }

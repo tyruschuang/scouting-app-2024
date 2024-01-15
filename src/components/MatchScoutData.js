@@ -3,11 +3,11 @@ import {Alliance, AutoIntakePosition, DriverStation, MatchStage, OuttakePosition
 const exampleData = [
     {
         "stage": MatchStage.PRE_MATCH,
-        "team": 1234,
+        "team": 9999,
         "match": 1,
-        "name": "Tyrus",
-        "alliance": Alliance.RED,
-        "driver_station": DriverStation.LEFT,
+        "name": "",
+        "alliance": "",
+        "driver_station": "",
     },
     {
         "stage": MatchStage.AUTO,
@@ -32,6 +32,7 @@ export default class MatchScoutData {
         this.stage = MatchStage.PRE_MATCH;
         this.data = exampleData;
         this.history = [];
+        this.historyCounter = 0;
     }
 
     get(stage, path) {
@@ -40,6 +41,7 @@ export default class MatchScoutData {
 
     set(stage, path, value) {
         this.history.push({
+            "id": ++this.historyCounter,
             "stage": stage,
             "path": path,
             "value": this.data[stage][path],
@@ -51,27 +53,29 @@ export default class MatchScoutData {
 
     undo() {
         if (this.history.length === 0) return;
-        // Find all history entries entered in the last 2 seconds
-        const now = new Date();
-        const last = this.history.filter((entry) => {
-            console.log(now - entry.time)
-            return (now - entry.time) < 5000;
-        });
 
-        console.log(last)
+        const latestEntry = this.history[this.history.length - 1];
+        if (latestEntry.stage !== this.stage) return;
+
+        const entriesToUndo = this.history.filter((entry) => {
+            return entry.stage === this.stage && latestEntry.time - entry.time < 1000 ;
+        })
+
+        console.log(latestEntry)
+        console.log(entriesToUndo)
 
         // If there are no entries, return
-        if (last.length === 0) return;
+        if (entriesToUndo.length === 0) return;
 
         // Undo the entries
-        last.forEach((entry) => {
+        entriesToUndo.reverse().forEach((entry) => {
             this.data[entry.stage][entry.path] = entry.value;
         });
 
         // Remove the entries from the history
         this.history = this.history.filter((entry) => {
-            return (now - entry.time) >= 2000;
-        });
+            return !entriesToUndo.includes(entry);
+        })
 
         console.log(this.data);
     }
