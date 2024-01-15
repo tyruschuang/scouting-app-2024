@@ -35,6 +35,7 @@ export default function MatchScout() {
         }
     }, [counter]);
 
+    // TODO: Form and data validation
     return (
         <Page>
             <Typography variant={"h3"}>Match Scout</Typography>
