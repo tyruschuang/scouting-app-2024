@@ -49,7 +49,7 @@ export default function MatchScout() {
                 my: 2
             }}>
                 {data.stage !== MatchStage.PRE_MATCH &&
-                    <Button fullWidth color={"secondary"} variant={"contained"} onClick={() => {
+                    <Button fullWidth variant={"outlined"} onClick={() => {
                         data.stage--
                         update()
                         console.log(data.stage)
@@ -58,7 +58,7 @@ export default function MatchScout() {
                     </Button>
                 }
                 {data.stage !== MatchStage.POST_MATCH &&
-                    <Button fullWidth color={"secondary"} variant={"contained"} onClick={() => {
+                    <Button fullWidth variant={"outlined"} onClick={() => {
                         data.stage++
                         update()
                         console.log(data.stage)

@@ -15,6 +15,7 @@ export default function Undo(props) {
                 data.undo()
                 update()
             }} fullWidth
+                    color={"secondary"}
                     variant={"outlined"}>
                 Undo
             </Button>
