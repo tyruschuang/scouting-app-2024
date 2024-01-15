@@ -1,19 +1,8 @@
-import {
-    Autocomplete,
-    Box,
-    Button,
-    Container,
-    FormControl, Grid, Input,
-    InputLabel,
-    MenuItem,
-    Select,
-    Stack, TextField,
-    Typography
-} from "@mui/material";
+import {Autocomplete, FormControl, Input, InputLabel, TextField} from "@mui/material";
 import {Scouters} from "../../../Scouters";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import {useEffect, useState} from "react";
-import {Alliance, DriverStation, MatchStage} from "../../../MatchConstants";
+import {useState} from "react";
+import {Alliance, MatchStage} from "../../../MatchConstants";
 import Undo from "../Undo";
 
 export default function MSPrematch(props) {

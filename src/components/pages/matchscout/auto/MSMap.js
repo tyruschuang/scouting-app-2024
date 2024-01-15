@@ -1,8 +1,4 @@
-import {Box, Button, Container, Stack, Typography} from "@mui/material";
-import Page from "../Page";
-import {Constants} from "../../Constants";
-import {useEffect, useState} from "react";
-import MatchScoutData from "../History";
+import {Box, Typography} from "@mui/material";
 
 export default function MSMap(props) {
 

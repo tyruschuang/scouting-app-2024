@@ -1,4 +1,4 @@
-import {Alliance, AutoIntakePosition, DriverStation, MatchStage, OuttakePosition} from "./MatchConstants";
+import {AutoIntakePosition, MatchStage, OuttakePosition} from "./MatchConstants";
 
 const exampleData = [
     {
@@ -58,7 +58,7 @@ export default class MatchScoutData {
         if (latestEntry.stage !== this.stage) return;
 
         const entriesToUndo = this.history.filter((entry) => {
-            return entry.stage === this.stage && latestEntry.time - entry.time < 1000 ;
+            return entry.stage === this.stage && latestEntry.time - entry.time < 1000;
         })
 
         console.log(latestEntry)
