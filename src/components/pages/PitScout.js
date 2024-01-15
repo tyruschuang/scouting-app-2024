@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, Paper, Container, Button } from '@mui/material';
-import Camera from 'react-camera-pro'; // Assuming this is the correct import for react-camera-pro
+import {Typography, Paper, Container, Button, TextField} from '@mui/material';
 
 const PitScout = () => {
   const [teamNumber, setTeamNumber] = useState('');
@@ -41,10 +40,10 @@ const PitScout = () => {
         <Typography variant="body1" paragraph>
           Use buttons to toggle and capture photos for the pit scouting process.
         </Typography>
-        <Camera
-          style={{ width: '100%', height: 'auto' }}
-          ref={(cam) => (this.camera = cam)}
-        />
+        {/*<Camera*/}
+        {/*  style={{ width: '100%', height: 'auto' }}*/}
+        {/*  ref={(cam) => (this.camera = cam)}*/}
+        {/*/>*/}
         <Button variant={isPhotoCaptured ? 'contained' : 'outlined'} fullWidth onClick={handleCapturePhoto}>
           {isPhotoCaptured ? 'Photo Captured' : 'Capture Photo'}
         </Button>
