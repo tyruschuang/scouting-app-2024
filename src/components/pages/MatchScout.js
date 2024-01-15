@@ -38,6 +38,9 @@ export default function MatchScout() {
     return (
         <Page>
             <Typography variant={"h3"}>Match Scout</Typography>
+            <Typography variant={"h5"}>
+                {Object.keys(MatchStage)[data.stage].replace("_", " ")}
+            </Typography>
             <Divider sx={{
                 my: 4
             }}/>
@@ -62,6 +65,11 @@ export default function MatchScout() {
                     }}>
                         Next
                     </Button>
+                }
+                {data.stage === MatchStage.POST_MATCH &&
+                    // TODO: Submit button
+                    <>
+                    </>
                 }
             </Stack>
         </Page>
