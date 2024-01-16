@@ -1,33 +1,44 @@
-import {Box, Stack, Typography} from "@mui/material";
+import {Box, Divider, Stack, Typography, Button} from "@mui/material";
 import Page from "../Page";
 import {Constants} from "../../Constants";
 
 export default function Home() {
 
     return (
-        <Page>
+        <Page sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+        }}>
+            <Typography component={"h3"} variant={"h3"} color={"primary"} sx={{
+                mb: 2,
+            }}>
+                972 Scouting
+            </Typography>
             <Stack direction={"column"} spacing={2}>
                 {Constants.pages.map((page) => (
                     (page.path !== "/" ?
                             <>
                                 <Box sx={{
                                     py: 3,
-                                    width: "50vw",
+                                    width: "60vw",
+                                    maxWidth: "200px",
                                     display: "flex",
                                     flexDirection: "column",
                                     justifyContent: "center",
                                     alignItems: "center",
-                                    gap: 1,
                                     cursor: "pointer",
-                                    border: "1px solid white",
+                                    borderBottom: "1px solid #333"
                                 }}
                                      onClick={
                                          () => {
                                              window.location.pathname = page.path;
                                          }
                                      }>
-                                    <Typography variant={"h4"}>{page.title}</Typography>
-                                    <Typography variant={"p"}>{page.description}</Typography>
+                                    <Typography variant={"h5"} sx={{
+                                        mb: -2.75,
+                                    }}>{page.title}</Typography>
+                                    <Divider/>
                                 </Box>
                             </> : <></>
                     )
