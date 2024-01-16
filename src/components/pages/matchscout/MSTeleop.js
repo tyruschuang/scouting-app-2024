@@ -74,9 +74,7 @@ export default function MSTeleop(props) {
                         update()
                     }}
                 />
-                {data.get(MatchStage.TELEOP, "onstage")
-                    // TODO: Slider for estimating trap and onstage time
-                    && (
+                {data.get(MatchStage.TELEOP, "onstage") && (
                         <>
                             <CustomRating
                                 onChange={(newValue) => {
