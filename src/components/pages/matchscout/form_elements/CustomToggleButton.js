@@ -1,7 +1,4 @@
-import {Box, Button, Divider, Rating, Stack, Typography} from "@mui/material";
-import {useState} from "react";
-import StarIcon from '@mui/icons-material/Star';
-import {MatchStage} from "../../../MatchConstants";
+import {Box, Button} from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
@@ -22,12 +19,12 @@ export default function CustomToggleButton(props) {
                     onClick(!value)
                 }}
                 fullWidth
->
-                    {value ? <CheckBoxIcon/> : <CheckBoxOutlineBlankIcon/>}
+            >
+                {value ? <CheckBoxIcon/> : <CheckBoxOutlineBlankIcon/>}
                 <Box sx={{
                     mx: 1
                 }}/>
-                    {label}
+                {label}
             </Button>
         </Grid2>
     )

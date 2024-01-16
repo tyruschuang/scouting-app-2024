@@ -1,4 +1,4 @@
-import {AutoIntakePosition, MatchStage, OuttakePosition} from "./MatchConstants";
+import {MatchStage} from "./MatchConstants";
 
 const defaultData = [
     {
@@ -12,8 +12,7 @@ const defaultData = [
     {
         "stage": MatchStage.AUTO,
         "leave": false,
-        "io": [
-        ]
+        "io": []
     },
     {
         "stage": MatchStage.TELEOP,
@@ -104,7 +103,10 @@ export default class MatchScoutData {
     }
 
     validate() {
-        if (this.stage !== MatchStage.POST_MATCH) return {valid: false, message: "You must complete the match before submitting."};
+        if (this.stage !== MatchStage.POST_MATCH) return {
+            valid: false,
+            message: "You must complete the match before submitting."
+        };
 
         return {valid: true, message: ""};
     }

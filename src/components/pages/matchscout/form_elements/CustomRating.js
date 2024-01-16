@@ -1,7 +1,6 @@
 import {Box, Rating, Stack, Typography} from "@mui/material";
 import {useState} from "react";
 import StarIcon from '@mui/icons-material/Star';
-import {MatchStage} from "../../../MatchConstants";
 import Grid2 from "@mui/material/Unstable_Grid2";
 
 // TODO: Change these labels
@@ -37,10 +36,10 @@ export default function CustomRating(props) {
                         onChangeActive={(event, newHover) => {
                             setHover(newHover);
                         }}
-                        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                        emptyIcon={<StarIcon style={{opacity: 0.55}} fontSize="inherit"/>}
                     />
                     {value >= 0 && (
-                        <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+                        <Box sx={{ml: 2}}>{labels[hover !== -1 ? hover : value]}</Box>
                     )}
                 </Stack>
             </Stack>

@@ -1,8 +1,7 @@
-import {Autocomplete, FormControl, Input, InputLabel, TextField} from "@mui/material";
 import {Scouters} from "../../Scouters";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import {useState} from "react";
-import {Alliance, MatchStage} from "../../MatchConstants";
+import {MatchStage} from "../../MatchConstants";
 import Undo from "./form_elements/Undo";
 import CustomAutocomplete from "./form_elements/CustomAutocomplete";
 import CustomInput from "./form_elements/CustomInput";

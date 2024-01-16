@@ -3,7 +3,7 @@ import {useState} from "react";
 import CustomRating from "./form_elements/CustomRating";
 import {MatchStage} from "../../MatchConstants";
 import Undo from "./form_elements/Undo";
-import {Divider, Stack, Typography} from "@mui/material";
+import {Divider} from "@mui/material";
 import CustomInput from "./form_elements/CustomInput";
 import CustomToggleButton from "./form_elements/CustomToggleButton";
 
@@ -47,11 +47,13 @@ export default function MSTeleop(props) {
                 />
                 {data.get(MatchStage.POST_MATCH, "defense") && (
                     <>
-                        <CustomRating value={data.get(MatchStage.POST_MATCH, "defense_rating")} onChange={(newValue) => {
-                            data.set(MatchStage.POST_MATCH, "defense_rating", newValue)
-                            update()
-                        }
-                        } title={"Defense Rating *"} description={"How well did the driver play defense on their target team?"}/>
+                        <CustomRating value={data.get(MatchStage.POST_MATCH, "defense_rating")}
+                                      onChange={(newValue) => {
+                                          data.set(MatchStage.POST_MATCH, "defense_rating", newValue)
+                                          update()
+                                      }
+                                      } title={"Defense Rating *"}
+                                      description={"How well did the driver play defense on their target team?"}/>
                         <CustomInput
                             label={"Team Defended"}
                             description={"Mainly what team did the driver focus on defending?"}
@@ -62,7 +64,7 @@ export default function MSTeleop(props) {
                                 data.set(MatchStage.POST_MATCH, "defended_who", newValue)
                                 update()
                             }}
-                    />
+                        />
                         <CustomInput
                             label={"Comments on Defense"}
                             helperText={"Did the driver perform so well, that their performance can't even be described by a number?"}

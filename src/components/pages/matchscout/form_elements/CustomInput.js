@@ -1,6 +1,4 @@
-import {Autocomplete, FormControl, Input, InputLabel, TextField} from "@mui/material";
-import {Scouters} from "../../../Scouters";
-import {MatchStage} from "../../../MatchConstants";
+import {FormControl, TextField} from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 
 export default function CustomInput(props) {
