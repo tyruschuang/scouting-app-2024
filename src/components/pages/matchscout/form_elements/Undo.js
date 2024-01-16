@@ -9,7 +9,7 @@ export default function Undo(props) {
     return (
         <>
             <Divider sx={{
-                my: 2
+                my: 3
             }}/>
             <Button onClick={() => {
                 data.undo()

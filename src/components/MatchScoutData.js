@@ -13,14 +13,6 @@ const defaultData = [
         "stage": MatchStage.AUTO,
         "leave": false,
         "io": [
-            {
-                "intake": AutoIntakePosition.PRELOAD,
-                "outtake": OuttakePosition.SPEAKER,
-            },
-            {
-                "intake": AutoIntakePosition.CENTER_1,
-                "outtake": OuttakePosition.DROPPED,
-            }
         ]
     },
     {
@@ -41,8 +33,9 @@ const defaultData = [
         "defense_rating": 0,
         "defended_who": 9999,
         "comments": "",
-
-        // Extra metadata
+    },
+    {
+        "stage": MatchStage.METADATA,
         "timestamp": new Date(),
     }
 ]
@@ -93,6 +86,9 @@ export default class MatchScoutData {
     }
 
     submit() {
+        // Add extra metadata
+        this.set(MatchStage.METADATA, "timestamp", Date.now())
+
         console.log(this.data);
         // TODO: submit data to server
     }

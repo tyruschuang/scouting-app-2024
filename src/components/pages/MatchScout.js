@@ -3,8 +3,9 @@ import Page from "../Page";
 import {useEffect, useMemo, useState} from "react";
 import MatchScoutData from "../MatchScoutData";
 import {MatchStage} from "../MatchConstants";
-import MSAuto from "./matchscout/auto/MSAuto";
-import MSPrematch from "./matchscout/prematch/MSPrematch";
+import MSAuto from "./matchscout/MSAuto";
+import MSPrematch from "./matchscout/MSPrematch";
+import MSPostmatch from "./matchscout/MSPostmatch";
 
 export default function MatchScout() {
 
@@ -30,7 +31,7 @@ export default function MatchScout() {
                 setCurrentComponent(<MSAuto data={data}/>);
                 break;
             case MatchStage.POST_MATCH:
-                setCurrentComponent(<MSAuto data={data}/>);
+                setCurrentComponent(<MSPostmatch data={data}/>);
                 break;
         }
     }, [counter]);
@@ -43,7 +44,7 @@ export default function MatchScout() {
                 {Object.keys(MatchStage)[data.stage].replace("_", " ")}
             </Typography>
             <Divider sx={{
-                my: 4
+                my: 3
             }}/>
             {currentComponent}
             <Stack direction={"row"} spacing={2} sx={{
@@ -67,9 +68,6 @@ export default function MatchScout() {
                 }
                 {data.stage === MatchStage.POST_MATCH &&
                     <Button fullWidth color={"success"} variant={"outlined"} onClick={() => {
-                        // Add extra metadata
-                        data.set(MatchStage.POST_MATCH, "timestamp", Date.now())
-
                         data.submit()
                         data.reset()
                         update()
