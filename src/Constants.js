@@ -37,6 +37,8 @@ export const Constants = {
             path: "/credits",
             component: Credits,
         },
-    ]
+    ],
+
+    field: require("./assets/field.png"),
 
 }

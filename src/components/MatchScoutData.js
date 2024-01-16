@@ -12,7 +12,24 @@ const defaultData = [
     {
         "stage": MatchStage.AUTO,
         "leave": false,
-        "io": []
+        "gp1_intake": "PRELOAD",
+        "gp1_outtake": "",
+        "gp2_intake": "",
+        "gp2_outtake": "",
+        "gp3_intake": "",
+        "gp3_outtake": "",
+        "gp4_intake": "",
+        "gp4_outtake": "",
+        "gp5_intake": "",
+        "gp5_outtake": "",
+        "gp6_intake": "",
+        "gp6_outtake": "",
+        "gp7_intake": "",
+        "gp7_outtake": "",
+        "gp8_intake": "",
+        "gp8_outtake": "",
+        "gp9_intake": "",
+        "gp9_outtake": "",
     },
     {
         "stage": MatchStage.TELEOP,
@@ -100,6 +117,8 @@ export default class MatchScoutData {
 
         console.log(this.data);
         // TODO: submit data to server
+
+        this.reset();
 
         return true
     }
