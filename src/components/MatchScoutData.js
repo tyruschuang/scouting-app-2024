@@ -65,6 +65,7 @@ export default class MatchScoutData {
         this.data[stage][path] = value;
     }
 
+    // TODO: Nothing was undone notification
     undo() {
         if (this.history.length === 0) return;
 
