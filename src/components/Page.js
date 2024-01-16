@@ -2,7 +2,7 @@ import {Box, Container} from "@mui/material";
 
 export default function Page(props) {
     return (
-        <Container maxWidth={"xl"} sx={{
+        <Container maxWidth={"md"} sx={{
             pt: "5vh",
         }}>
             <Box sx={{

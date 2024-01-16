@@ -41,4 +41,67 @@ export const Constants = {
 
     field: require("./assets/field.png"),
 
+    developers: [
+        {
+            name: "Tyrus Chuang",
+            year: "3rd Year",
+            icon: require("./assets/field.png"),
+        },
+        {
+            name: "Ashir Rao",
+            year: "3rd Year",
+            icon: require("./assets/field.png"),
+        },
+        {
+            name: "Elisa Pan",
+            year: "3rd Year",
+            icon: require("./assets/field.png"),
+        },
+        {
+            name: "Eric Hou",
+            year: "1st Year",
+            icon: require("./assets/field.png"),
+        }
+    ],
+
+    specialThanks: [
+        {
+            name: "Mentors",
+            description: "both technical, and non-technical",
+        },
+        {
+            name: "Scouters",
+            description: "again, for giving purpose to this app",
+        },
+        {
+            name: "Material UI React",
+            description: "for making this app look passable",
+        },
+    ],
+
+    previousYears: [
+        {
+            year: "2020",
+            developers: [
+                "Alan Sheu",
+                "Pranav Tadepalli"
+            ]
+        },
+        {
+            year: "2022",
+            developers: [
+                "Richie Tan",
+                "Ashir Rao"
+            ]
+        },
+        {
+            year: "2023",
+            developers: [
+                "Ashir Rao",
+                "Elisa Pan",
+                "Johann Jacob",
+                "Edwin Hou"
+            ]
+        }
+    ]
 }
