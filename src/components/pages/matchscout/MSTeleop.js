@@ -28,6 +28,68 @@ export default function MSTeleop(props) {
                         update()
                     }}
                 />
+                <SmallNumberCounter
+                    label={"Amp Outtakes"}
+                    value={data.get(MatchStage.TELEOP, "amp_outtakes")}
+                    onChange={(newValue) => {
+                        data.set(MatchStage.TELEOP, "amp_outtakes", newValue)
+                        update()
+                    }}
+                />
+                <SmallNumberCounter
+                    label={"Speaker Outtakes"}
+                    value={data.get(MatchStage.TELEOP, "speaker_outtakes")}
+                    onChange={(newValue) => {
+                        data.set(MatchStage.TELEOP, "speaker_outtakes", newValue)
+                        update()
+                    }}
+                />
+                <SmallNumberCounter
+                    label={"Dropped"}
+                    value={data.get(MatchStage.TELEOP, "dropped")}
+                    onChange={(newValue) => {
+                        data.set(MatchStage.TELEOP, "dropped", newValue)
+                        update()
+                    }}
+                />
+                <SmallNumberCounter
+                    label={"Missed"}
+                    value={data.get(MatchStage.TELEOP, "Missed")}
+                    onChange={(newValue) => {
+                        data.set(MatchStage.TELEOP, "Missed", newValue)
+                        update()
+                    }}
+                />
+                <CustomToggleButton
+                    label={"Onstage?"}
+                    value={data.get(MatchStage.TELEOP, "onstage")}
+                    onClick={(newValue) => {
+                        data.set(MatchStage.TELEOP, "onstage", newValue)
+                        update()
+                    }}
+                />
+                {data.get(MatchStage.TELEOP, "onstage")
+                    // TODO: Slider for estimating trap and onstage time
+                    && (
+                    <>
+                        <CustomToggleButton
+                            label={"Onstage with Others?"}
+                            value={data.get(MatchStage.TELEOP, "owo")}
+                            onClick={(newValue) => {
+                                data.set(MatchStage.TELEOP, "owo", newValue)
+                                update()
+                            }}
+                        />
+                            <CustomToggleButton
+                                label={"Trap?"}
+                                value={data.get(MatchStage.TELEOP, "trap")}
+                                onClick={(newValue) => {
+                                    data.set(MatchStage.TELEOP, "trap", newValue)
+                                    update()
+                                }}
+                            />
+                    </>
+                )}
             </Grid2>
             <Undo data={data} update={() => update()}/>
         </>

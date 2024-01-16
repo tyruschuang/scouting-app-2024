@@ -22,8 +22,10 @@ const defaultData = [
         "dropped": 0,
         "missed": 0,
         "trap": false,
+        "trap_time": 0,
         "onstage": false,
-        "onstage_others": false,
+        "onstage_time": 0,
+        "owo": false,
     },
     {
         "stage": MatchStage.POST_MATCH,
