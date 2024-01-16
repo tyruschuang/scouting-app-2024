@@ -4,6 +4,15 @@ import {MatchStage} from "../../MatchConstants";
 import Undo from "./form_elements/Undo";
 import CustomToggleButton from "./form_elements/CustomToggleButton";
 import SmallNumberCounter from "./form_elements/SmallNumberCounter";
+import CustomRating from "./form_elements/CustomRating";
+
+const timeLabels = {
+    1: 'I fell asleep',
+    2: '7-10 seconds',
+    3: '5-6 seconds',
+    4: '3-4 seconds',
+    5: '1-2 seconds',
+}
 
 export default function MSTeleop(props) {
 
@@ -51,9 +60,9 @@ export default function MSTeleop(props) {
                 />
                 <SmallNumberCounter
                     label={"Missed"}
-                    value={data.get(MatchStage.TELEOP, "Missed")}
+                    value={data.get(MatchStage.TELEOP, "missed")}
                     onChange={(newValue) => {
-                        data.set(MatchStage.TELEOP, "Missed", newValue)
+                        data.set(MatchStage.TELEOP, "missed", newValue)
                         update()
                     }}
                 />
@@ -69,6 +78,17 @@ export default function MSTeleop(props) {
                     // TODO: Slider for estimating trap and onstage time
                     && (
                         <>
+                            <CustomRating
+                                onChange={(newValue) => {
+                                    data.set(MatchStage.TELEOP, "onstage_time", newValue)
+                                    update()
+                                }
+                                }
+                                value={data.get(MatchStage.TELEOP, "onstage_time")}
+                                labels={timeLabels}
+                                title={"Onstage Time *"}
+                                description={"Give your best estimate as to how long it took the robot to get onstage."}
+                            />
                             <CustomToggleButton
                                 label={"Onstage with Others?"}
                                 value={data.get(MatchStage.TELEOP, "owo")}
@@ -80,11 +100,25 @@ export default function MSTeleop(props) {
                             <CustomToggleButton
                                 label={"Trap?"}
                                 value={data.get(MatchStage.TELEOP, "trap")}
+                                labels={timeLabels}
                                 onClick={(newValue) => {
                                     data.set(MatchStage.TELEOP, "trap", newValue)
                                     update()
                                 }}
                             />
+                            {data.get(MatchStage.TELEOP, "trap") && (
+                                <CustomRating
+                                    onChange={(newValue) => {
+                                        data.set(MatchStage.TELEOP, "trap_time", newValue)
+                                        update()
+                                    }
+                                    }
+                                    labels={timeLabels}
+                                    value={data.get(MatchStage.TELEOP, "trap_time")}
+                                    title={"Trap Time *"}
+                                    description={"Give your best estimate as to how long it took the robot to score in the trap."}
+                                />
+                            )}
                         </>
                     )}
             </Grid2>

@@ -4,7 +4,7 @@ import StarIcon from '@mui/icons-material/Star';
 import Grid2 from "@mui/material/Unstable_Grid2";
 
 // TODO: Change these labels
-const labels = {
+const defaultLabels = {
     1: 'Nuisance',
     2: 'Below Average',
     3: 'Average',
@@ -19,6 +19,8 @@ export default function CustomRating(props) {
 
     const title = props.title
     const description = props.description
+
+    const labels = props.labels || defaultLabels
 
     const [hover, setHover] = useState(-1)
 
