@@ -55,19 +55,19 @@ export default function MatchScout() {
                         mb: 3
                     }}
                     action={
-                    <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"
-                        onClick={() => {
-                            data.alert.open = false
-                            update()
-                        }}
-                    >
-                        <CloseIcon fontSize="inherit" />
-                    </IconButton>
-                }
-                       severity={data.alert.severity}
+                        <IconButton
+                            aria-label="close"
+                            color="inherit"
+                            size="small"
+                            onClick={() => {
+                                data.alert.open = false
+                                update()
+                            }}
+                        >
+                            <CloseIcon fontSize="inherit"/>
+                        </IconButton>
+                    }
+                    severity={data.alert.severity}
                 >
                     {data.alert.message}
                 </Alert>

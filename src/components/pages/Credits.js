@@ -1,18 +1,7 @@
 import React from 'react';
-import {
-    Avatar,
-    Container,
-    Divider,
-    List,
-    ListItem,
-    ListItemAvatar,
-    ListItemText,
-    Paper, Stack,
-    Typography
-} from '@mui/material';
+import {Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText, Stack, Typography} from '@mui/material';
 import Grid2 from "@mui/material/Unstable_Grid2";
 import Page from "../Page";
-import {MatchStage} from "../MatchConstants";
 import {Constants} from "../../Constants";
 
 const Credits = () => {
@@ -30,29 +19,30 @@ const Credits = () => {
             }}/>
             <Grid2 container spacing={2}>
                 <Grid2 xs={12} sm={6}>
-                        <Stack direction={"column"} spacing={0.5}>
-                            <Typography variant={"h5"}>
-                                2024 Development Team
-                            </Typography>
-                            <List dense>
-                                {Constants.developers.map((developer) => {
-                                    return (
-                                        <ListItem
-                                            key={developer.name}
-                                        >
-                                            <ListItemAvatar>
-                                                <Avatar src={developer.icon}/>
-                                            </ListItemAvatar>
-                                            <ListItemText id={developer.name} primary={developer.name} primaryTypographyProps={{
-                                                fontSize: 20
-                                            }} secondary={developer.year} secondaryTypographyProps={{
-                                                fontSize: 15
-                                            }}/>
-                                        </ListItem>
-                                    )
-                                })}
-                            </List>
-                        </Stack>
+                    <Stack direction={"column"} spacing={0.5}>
+                        <Typography variant={"h5"}>
+                            2024 Development Team
+                        </Typography>
+                        <List dense>
+                            {Constants.developers.map((developer) => {
+                                return (
+                                    <ListItem
+                                        key={developer.name}
+                                    >
+                                        <ListItemAvatar>
+                                            <Avatar src={developer.icon}/>
+                                        </ListItemAvatar>
+                                        <ListItemText id={developer.name} primary={developer.name}
+                                                      primaryTypographyProps={{
+                                                          fontSize: 20
+                                                      }} secondary={developer.year} secondaryTypographyProps={{
+                                            fontSize: 15
+                                        }}/>
+                                    </ListItem>
+                                )
+                            })}
+                        </List>
+                    </Stack>
                 </Grid2>
                 <Grid2 xs={12} sm={6}>
                     <Stack direction={"column"} spacing={0.5}>
@@ -67,9 +57,10 @@ const Credits = () => {
                                     >
                                         <ListItemText primaryTypographyProps={{
                                             fontSize: 20
-                                        }} id={thanks.name} primary={thanks.name} secondary={thanks.description} secondaryTypographyProps={{
-                                            fontSize: 15
-                                        }}/>
+                                        }} id={thanks.name} primary={thanks.name} secondary={thanks.description}
+                                                      secondaryTypographyProps={{
+                                                          fontSize: 15
+                                                      }}/>
                                     </ListItem>
                                 )
                             })}

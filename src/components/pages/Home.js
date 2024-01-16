@@ -1,4 +1,4 @@
-import {Box, Divider, Stack, Typography, Button} from "@mui/material";
+import {Box, Divider, Stack, Typography} from "@mui/material";
 import Page from "../Page";
 import {Constants} from "../../Constants";
 
@@ -21,21 +21,21 @@ export default function Home() {
                             <>
                                 <Box
                                     sx={{
-                                    py: 3,
-                                    width: "60vw",
-                                    maxWidth: "200px",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    cursor: "pointer",
-                                    borderBottom: "1px solid #333"
-                                }}
-                                     onClick={
-                                         () => {
-                                             window.location.pathname = page.path;
-                                         }
-                                     }>
+                                        py: 3,
+                                        width: "60vw",
+                                        maxWidth: "200px",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        cursor: "pointer",
+                                        borderBottom: "1px solid #333"
+                                    }}
+                                    onClick={
+                                        () => {
+                                            window.location.pathname = page.path;
+                                        }
+                                    }>
                                     <Typography variant={"h5"} sx={{
                                         mb: -2.75,
                                     }}>{page.title}</Typography>

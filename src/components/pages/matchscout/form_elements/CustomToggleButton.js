@@ -10,7 +10,9 @@ export default function CustomToggleButton(props) {
     const value = props.value
 
     return (
-        <Grid2 xs={12}>
+        <Grid2 xs={12} sx={{
+            ...props.sx
+        }}>
             <Button
                 variant={value ? "contained" : "filled"}
                 color={"inherit"}

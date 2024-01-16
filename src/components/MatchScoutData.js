@@ -160,9 +160,7 @@ export default class MatchScoutData {
                 valid: false,
                 message: "Please select your assigned team."
             }
-        }
-
-        else if (this.stage === MatchStage.POST_MATCH) {
+        } else if (this.stage === MatchStage.POST_MATCH) {
             if (this.get(MatchStage.POST_MATCH, "driver_rating") === 0) alert = {
                 valid: false,
                 message: "Please rate your driver's performance."

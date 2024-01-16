@@ -5,12 +5,15 @@ import CustomToggleButton from "./form_elements/CustomToggleButton";
 import {Box, Button, Divider, Stack, Tooltip, Typography} from "@mui/material";
 import {theme} from "../../../Theme";
 import Grid2 from "@mui/material/Unstable_Grid2";
+import {Collapse} from "@mui/material";
 import {Constants} from "../../../Constants";
 
 export default function MSAuto(props) {
 
     const [data, _] = useState(props.data)
     const [counter, setCounter] = useState(0)
+
+    const [showHistory, setShowHistory] = useState(false)
 
     const update = () => {
         setCounter(counter + 1)
@@ -213,7 +216,31 @@ export default function MSAuto(props) {
                     </Stack>
                 </Grid2>
             </Grid2>
-            { /* TODO: History */ }
+            <CustomToggleButton label={"Show History"}
+                                value={showHistory}
+                                onClick={(newValue) => {
+                                    setShowHistory(newValue)
+                                    update()
+                                }}
+                sx={{
+                    mt: 2
+                }}
+            />
+            <Collapse in={showHistory}>
+                <Stack direction={"column"} spacing={2} sx={{
+                    mt: 2
+                }}>
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => {
+                        if (data.get(MatchStage.AUTO, `gp${i}_outtake`) !== "") {
+                            return (<Typography variant={"subtitle1"}>
+                                Game Piece #
+                                {i}
+                                : {data.get(MatchStage.AUTO, `gp${i}_intake`)} -> {data.get(MatchStage.AUTO, `gp${i}_outtake`)}
+                            </Typography>)
+                        }
+                    })}
+                </Stack>
+            </Collapse>
             <Undo data={data} update={() => {
                 if (gamePieceCounter === 1) {
                     return
