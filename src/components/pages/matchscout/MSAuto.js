@@ -101,6 +101,7 @@ export default function MSAuto(props) {
                     top: `${y}%`,
                     left: `${x}%`,
                     transform: 'translate(-50%, -50%)',
+                    cursor: shouldBeOpaque() ? "pointer" : "default",
 
                     borderRadius: "50%",
                     display: "flex",
@@ -212,6 +213,7 @@ export default function MSAuto(props) {
                     </Stack>
                 </Grid2>
             </Grid2>
+            { /* TODO: History */ }
             <Undo data={data} update={() => {
                 if (gamePieceCounter === 1) {
                     return

@@ -1,4 +1,5 @@
 import {MatchStage} from "./MatchConstants";
+import {Scouters} from "./Scouters";
 
 const defaultData = [
     {
@@ -42,7 +43,7 @@ const defaultData = [
         "trap_time": 0,
         "onstage": false,
         "onstage_time": 0,
-        "owo": false,
+        "harmony": false,
     },
     {
         "stage": MatchStage.POST_MATCH,
@@ -67,6 +68,12 @@ export default class MatchScoutData {
         this.data = defaultData;
         this.history = [];
         this.historyCounter = 0;
+
+        this.alert = {
+            open: false,
+            message: "",
+            severity: "success",
+        }
     }
 
     get(stage, path) {
@@ -106,9 +113,9 @@ export default class MatchScoutData {
     }
 
     submit() {
-        const validation = this.validate();
+        const validation = this.validate(true);
         if (!validation.valid) {
-            alert(validation.message);
+            this.sendAlert(validation.message, "error")
             return validation;
         }
 
@@ -123,19 +130,53 @@ export default class MatchScoutData {
         return true
     }
 
-    validate() {
-        if (this.stage !== MatchStage.POST_MATCH) return {
+    sendAlert(message, severity) {
+        this.alert.message = message;
+        this.alert.severity = severity;
+        this.alert.open = true;
+    }
+
+    validate(submit = false) {
+        let alert = null;
+        if (this.stage !== MatchStage.POST_MATCH && submit) alert = {
             valid: false,
             message: "You must complete the match before submitting."
         };
 
-        return {valid: true, message: ""};
-    }
+        if (this.stage === MatchStage.PRE_MATCH) {
+            if (!Scouters.includes(this.get(MatchStage.PRE_MATCH, "name"))) alert = {
+                valid: false,
+                message: "Error in checking your name. Did you make a typo?"
+            };
+            else if (this.get(MatchStage.PRE_MATCH, "alliance") === "") alert = {
+                valid: false,
+                message: "Please select your team's alliance."
+            }
+            else if (this.get(MatchStage.PRE_MATCH, "driver_station") === "") alert = {
+                valid: false,
+                message: "Please select your team's driver station."
+            }
+            else if (this.get(MatchStage.PRE_MATCH, "team") === 9999) alert = {
+                valid: false,
+                message: "Please select your assigned team."
+            }
+        }
 
-    reset() {
-        this.stage = MatchStage.PRE_MATCH;
-        this.history = [];
-        this.historyCounter = 0;
-        this.data = defaultData;
+        else if (this.stage === MatchStage.POST_MATCH) {
+            if (this.get(MatchStage.POST_MATCH, "driver_rating") === 0) alert = {
+                valid: false,
+                message: "Please rate your driver's performance."
+            }
+            else if (this.get(MatchStage.POST_MATCH, "defense") && this.get(MatchStage.POST_MATCH, "defense_rating") === 0) alert = {
+                valid: false,
+                message: "Please rate the your assigned team's defensive capabilities."
+            }
+        }
+
+        if (alert === null) alert = {valid: true, message: ""};
+
+        if (!alert.valid) this.sendAlert(alert.message, "error")
+
+        return alert;
     }
 }

@@ -1,4 +1,4 @@
-import {Button, Divider, Stack, Typography} from "@mui/material";
+import {Alert, Button, Collapse, Divider, IconButton, Stack, Typography} from "@mui/material";
 import Page from "../Page";
 import {useEffect, useMemo, useState} from "react";
 import MatchScoutData from "../MatchScoutData";
@@ -7,6 +7,8 @@ import MSAuto from "./matchscout/MSAuto";
 import MSPrematch from "./matchscout/MSPrematch";
 import MSPostmatch from "./matchscout/MSPostmatch";
 import MSTeleop from "./matchscout/MSTeleop";
+import CloseIcon from '@mui/icons-material/Close';
+
 
 export default function MatchScout() {
 
@@ -47,6 +49,29 @@ export default function MatchScout() {
             <Divider sx={{
                 my: 3
             }}/>
+            <Collapse in={data.alert.open}>
+                <Alert
+                    sx={{
+                        mb: 3
+                    }}
+                    action={
+                    <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"
+                        onClick={() => {
+                            data.alert.open = false
+                            update()
+                        }}
+                    >
+                        <CloseIcon fontSize="inherit" />
+                    </IconButton>
+                }
+                       severity={data.alert.severity}
+                >
+                    {data.alert.message}
+                </Alert>
+            </Collapse>
             {currentComponent}
             <Stack direction={"row"} spacing={2} sx={{
                 my: 2
@@ -61,7 +86,10 @@ export default function MatchScout() {
                 }
                 {data.stage !== MatchStage.POST_MATCH &&
                     <Button fullWidth variant={"outlined"} onClick={() => {
-                        data.stage++
+                        console.log(data.validate())
+                        if (data.validate().valid) {
+                            data.stage++
+                        }
                         update()
                     }}>
                         Next

@@ -6,6 +6,8 @@ import Undo from "./form_elements/Undo";
 import {Divider} from "@mui/material";
 import CustomInput from "./form_elements/CustomInput";
 import CustomToggleButton from "./form_elements/CustomToggleButton";
+import {Collapse} from "@mui/material";
+
 
 export default function MSPostmatch(props) {
 
@@ -24,6 +26,7 @@ export default function MSPostmatch(props) {
                     update()
                 }} title={"Driver Rating *"} description={"How well did the driver perform?"}/>
                 <CustomInput
+                    required={false}
                     label={"Extra Comments"}
                     helperText={"Anything else you would like to add? For example, did the robot break down, or did the drive team do something exceptional?"}
                     type={"text"}
@@ -45,8 +48,7 @@ export default function MSPostmatch(props) {
                         update()
                     }}
                 />
-                {data.get(MatchStage.POST_MATCH, "defense") && (
-                    <>
+                <Collapse in={data.get(MatchStage.POST_MATCH, "defense")}>
                         <CustomRating value={data.get(MatchStage.POST_MATCH, "defense_rating")}
                                       onChange={(newValue) => {
                                           data.set(MatchStage.POST_MATCH, "defense_rating", newValue)
@@ -77,8 +79,7 @@ export default function MSPostmatch(props) {
                                 update()
                             }}
                         />
-                    </>
-                )}
+                </Collapse>
             </Grid2>
             <Undo data={data} update={() => update()}/>
         </>

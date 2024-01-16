@@ -3,6 +3,7 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 
 export default function CustomInput(props) {
 
+    const required = props.required
     const label = props.label
     const helperText = props.helperText || ""
     const type = props.type
@@ -15,7 +16,7 @@ export default function CustomInput(props) {
         <Grid2 xs={12} sm={fullWidth ? 12 : 6}>
             <FormControl fullWidth>
                 <TextField
-                    required
+                    required={required}
                     id={label}
                     type={type}
                     value={value}

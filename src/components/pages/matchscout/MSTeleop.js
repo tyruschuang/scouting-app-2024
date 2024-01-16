@@ -5,6 +5,7 @@ import Undo from "./form_elements/Undo";
 import CustomToggleButton from "./form_elements/CustomToggleButton";
 import SmallNumberCounter from "./form_elements/SmallNumberCounter";
 import CustomRating from "./form_elements/CustomRating";
+import {Collapse} from "@mui/material";
 
 const timeLabels = {
     1: 'I fell asleep',
@@ -74,51 +75,49 @@ export default function MSTeleop(props) {
                         update()
                     }}
                 />
-                {data.get(MatchStage.TELEOP, "onstage") && (
-                        <>
-                            <CustomRating
-                                onChange={(newValue) => {
-                                    data.set(MatchStage.TELEOP, "onstage_time", newValue)
-                                    update()
-                                }
-                                }
-                                value={data.get(MatchStage.TELEOP, "onstage_time")}
-                                labels={timeLabels}
-                                title={"Onstage Time *"}
-                                description={"Give your best estimate as to how long it took the robot to get onstage."}
-                            />
-                            <CustomToggleButton
-                                label={"Onstage with Others?"}
-                                value={data.get(MatchStage.TELEOP, "owo")}
-                                onClick={(newValue) => {
-                                    data.set(MatchStage.TELEOP, "owo", newValue)
-                                    update()
-                                }}
-                            />
-                            <CustomToggleButton
-                                label={"Trap?"}
-                                value={data.get(MatchStage.TELEOP, "trap")}
-                                labels={timeLabels}
-                                onClick={(newValue) => {
-                                    data.set(MatchStage.TELEOP, "trap", newValue)
-                                    update()
-                                }}
-                            />
-                            {data.get(MatchStage.TELEOP, "trap") && (
-                                <CustomRating
-                                    onChange={(newValue) => {
-                                        data.set(MatchStage.TELEOP, "trap_time", newValue)
-                                        update()
-                                    }
-                                    }
-                                    labels={timeLabels}
-                                    value={data.get(MatchStage.TELEOP, "trap_time")}
-                                    title={"Trap Time *"}
-                                    description={"Give your best estimate as to how long it took the robot to score in the trap."}
-                                />
-                            )}
-                        </>
-                    )}
+                <Collapse in={data.get(MatchStage.TELEOP, "onstage")}>
+                    <CustomRating
+                        onChange={(newValue) => {
+                            data.set(MatchStage.TELEOP, "onstage_time", newValue)
+                            update()
+                        }
+                        }
+                        value={data.get(MatchStage.TELEOP, "onstage_time")}
+                        labels={timeLabels}
+                        title={"Onstage Time *"}
+                        description={"Give your best estimate as to how long it took the robot to get onstage."}
+                    />
+                    <CustomToggleButton
+                        label={"Harmony?"}
+                        value={data.get(MatchStage.TELEOP, "harmony")}
+                        onClick={(newValue) => {
+                            data.set(MatchStage.TELEOP, "harmony", newValue)
+                            update()
+                        }}
+                    />
+                    <CustomToggleButton
+                        label={"Trap?"}
+                        value={data.get(MatchStage.TELEOP, "trap")}
+                        labels={timeLabels}
+                        onClick={(newValue) => {
+                            data.set(MatchStage.TELEOP, "trap", newValue)
+                            update()
+                        }}
+                    />
+                    <Collapse in={data.get(MatchStage.TELEOP, "trap")}>
+                        <CustomRating
+                            onChange={(newValue) => {
+                                data.set(MatchStage.TELEOP, "trap_time", newValue)
+                                update()
+                            }
+                            }
+                            labels={timeLabels}
+                            value={data.get(MatchStage.TELEOP, "trap_time")}
+                            title={"Trap Time *"}
+                            description={"Give your best estimate as to how long it took the robot to score in the trap."}
+                        />
+                    </Collapse>
+                </Collapse>
             </Grid2>
             <Undo data={data} update={() => update()}/>
         </>

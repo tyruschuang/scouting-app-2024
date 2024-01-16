@@ -19,7 +19,8 @@ export default function Home() {
                 {Constants.pages.map((page) => (
                     (page.path !== "/" ?
                             <>
-                                <Box sx={{
+                                <Box
+                                    sx={{
                                     py: 3,
                                     width: "60vw",
                                     maxWidth: "200px",
