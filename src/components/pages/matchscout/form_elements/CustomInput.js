@@ -24,7 +24,7 @@ export default function CustomInput(props) {
                     helperText={helperText}
                     variant={"filled"}
                     onChange={(event) => {
-                        onChange()
+                        onChange(event.target.value)
                     }}
                 />
             </FormControl>

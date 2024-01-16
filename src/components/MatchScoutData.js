@@ -16,7 +16,7 @@ const defaultData = [
     },
     {
         "stage": MatchStage.TELEOP,
-        "intaked": 0,
+        "intakes": 0,
         "amp_outtakes": 0,
         "speaker_outtakes": 0,
         "dropped": 0,
