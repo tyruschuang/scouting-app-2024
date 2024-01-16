@@ -6,7 +6,6 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 export default function CustomToggleButton(props) {
 
     const label = props.label
-    const color = props.color
     const onClick = props.onClick
     const value = props.value
 
