@@ -1,10 +1,7 @@
 import Grid2 from "@mui/material/Unstable_Grid2";
 import {useState} from "react";
-import CustomRating from "./form_elements/CustomRating";
 import {MatchStage} from "../../MatchConstants";
 import Undo from "./form_elements/Undo";
-import {Divider} from "@mui/material";
-import CustomInput from "./form_elements/CustomInput";
 import CustomToggleButton from "./form_elements/CustomToggleButton";
 import SmallNumberCounter from "./form_elements/SmallNumberCounter";
 
@@ -71,15 +68,15 @@ export default function MSTeleop(props) {
                 {data.get(MatchStage.TELEOP, "onstage")
                     // TODO: Slider for estimating trap and onstage time
                     && (
-                    <>
-                        <CustomToggleButton
-                            label={"Onstage with Others?"}
-                            value={data.get(MatchStage.TELEOP, "owo")}
-                            onClick={(newValue) => {
-                                data.set(MatchStage.TELEOP, "owo", newValue)
-                                update()
-                            }}
-                        />
+                        <>
+                            <CustomToggleButton
+                                label={"Onstage with Others?"}
+                                value={data.get(MatchStage.TELEOP, "owo")}
+                                onClick={(newValue) => {
+                                    data.set(MatchStage.TELEOP, "owo", newValue)
+                                    update()
+                                }}
+                            />
                             <CustomToggleButton
                                 label={"Trap?"}
                                 value={data.get(MatchStage.TELEOP, "trap")}
@@ -88,8 +85,8 @@ export default function MSTeleop(props) {
                                     update()
                                 }}
                             />
-                    </>
-                )}
+                        </>
+                    )}
             </Grid2>
             <Undo data={data} update={() => update()}/>
         </>
