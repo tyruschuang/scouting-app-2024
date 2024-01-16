@@ -6,6 +6,7 @@ import {MatchStage} from "../MatchConstants";
 import MSAuto from "./matchscout/MSAuto";
 import MSPrematch from "./matchscout/MSPrematch";
 import MSPostmatch from "./matchscout/MSPostmatch";
+import MSTeleop from "./matchscout/MSTeleop";
 
 export default function MatchScout() {
 
@@ -28,7 +29,7 @@ export default function MatchScout() {
                 setCurrentComponent(<MSAuto data={data}/>);
                 break;
             case MatchStage.TELEOP:
-                setCurrentComponent(<MSAuto data={data}/>);
+                setCurrentComponent(<MSTeleop data={data}/>);
                 break;
             case MatchStage.POST_MATCH:
                 setCurrentComponent(<MSPostmatch data={data}/>);

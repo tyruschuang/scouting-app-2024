@@ -7,7 +7,7 @@ import {Divider, Stack, Typography} from "@mui/material";
 import CustomInput from "./form_elements/CustomInput";
 import CustomToggleButton from "./form_elements/CustomToggleButton";
 
-export default function MSPostmatch(props) {
+export default function MSTeleop(props) {
 
     const [data, _] = useState(props.data)
     const [counter, setCounter] = useState(0)

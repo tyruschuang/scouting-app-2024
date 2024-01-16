@@ -9,11 +9,12 @@ export default function CustomInput(props) {
     const helperText = props.helperText || ""
     const type = props.type
     const multiline = props.multiline
+    const fullWidth = props.fullWidth
     const value = props.value
     const onChange = props.onChange
 
     return (
-        <Grid2 xs={12} sm={6}>
+        <Grid2 xs={12} sm={fullWidth ? 12 : 6}>
             <FormControl fullWidth>
                 <TextField
                     required

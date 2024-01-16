@@ -18,7 +18,7 @@ export default function MSPrematch(props) {
 
     return (
         <>
-            <Grid2 container spacing={2}>
+            <Grid2 container spacing={3}>
                 <CustomAutocomplete
                     label={"Name"}
                     options={Scouters}

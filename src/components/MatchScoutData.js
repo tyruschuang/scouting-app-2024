@@ -32,6 +32,7 @@ const defaultData = [
         "defense": false,
         "defense_rating": 0,
         "defended_who": 9999,
+        "defense_comments": "",
         "comments": "",
     },
     {
@@ -87,11 +88,25 @@ export default class MatchScoutData {
     }
 
     submit() {
+        const validation = this.validate();
+        if (!validation.valid) {
+            alert(validation.message);
+            return validation;
+        }
+
         // Add extra metadata
         this.set(MatchStage.METADATA, "timestamp", Date.now())
 
         console.log(this.data);
         // TODO: submit data to server
+
+        return true
+    }
+
+    validate() {
+        if (this.stage !== MatchStage.POST_MATCH) return {valid: false, message: "You must complete the match before submitting."};
+
+        return {valid: true, message: ""};
     }
 
     reset() {
