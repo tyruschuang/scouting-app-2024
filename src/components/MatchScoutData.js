@@ -8,7 +8,7 @@ const defaultData = [
         "match": 1,
         "name": "",
         "alliance": "",
-        "driver_station": "",
+        "driver_station": "0",
     },
     {
         "stage": MatchStage.AUTO,

@@ -48,7 +48,7 @@ export default function MSPrematch(props) {
                 />
                 <CustomAutocomplete
                     label={"Driver Station"}
-                    options={["LEFT", "CENTER", "RIGHT"]}
+                    options={["1", "2", "3"]}
                     value={data.get(MatchStage.PRE_MATCH, "driver_station")}
                     onChange={(newValue) => {
                         data.set(MatchStage.PRE_MATCH, "driver_station", newValue)
