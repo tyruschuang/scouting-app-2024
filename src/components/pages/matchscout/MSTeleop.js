@@ -95,28 +95,28 @@ export default function MSTeleop(props) {
                             update()
                         }}
                     />
-                    <CustomToggleButton
-                        label={"Trap?"}
-                        value={data.get(MatchStage.TELEOP, "trap")}
-                        labels={timeLabels}
-                        onClick={(newValue) => {
-                            data.set(MatchStage.TELEOP, "trap", newValue)
+                </Collapse>
+                <CustomToggleButton
+                    label={"Trap?"}
+                    value={data.get(MatchStage.TELEOP, "trap")}
+                    labels={timeLabels}
+                    onClick={(newValue) => {
+                        data.set(MatchStage.TELEOP, "trap", newValue)
+                        update()
+                    }}
+                />
+                <Collapse in={data.get(MatchStage.TELEOP, "trap")}>
+                    <CustomRating
+                        onChange={(newValue) => {
+                            data.set(MatchStage.TELEOP, "trap_time", newValue)
                             update()
-                        }}
+                        }
+                        }
+                        labels={timeLabels}
+                        value={data.get(MatchStage.TELEOP, "trap_time")}
+                        title={"Trap Time *"}
+                        description={"Give your best estimate as to how long it took the robot to score in the trap."}
                     />
-                    <Collapse in={data.get(MatchStage.TELEOP, "trap")}>
-                        <CustomRating
-                            onChange={(newValue) => {
-                                data.set(MatchStage.TELEOP, "trap_time", newValue)
-                                update()
-                            }
-                            }
-                            labels={timeLabels}
-                            value={data.get(MatchStage.TELEOP, "trap_time")}
-                            title={"Trap Time *"}
-                            description={"Give your best estimate as to how long it took the robot to score in the trap."}
-                        />
-                    </Collapse>
                 </Collapse>
             </Grid2>
             <Undo data={data} update={() => update()}/>
