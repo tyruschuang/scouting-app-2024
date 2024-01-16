@@ -14,6 +14,7 @@ export default function SmallNumberCounter(props) {
                 <Stack direction={"row"} spacing={1}>
                     <IconButton
                         onClick={() => {
+                            if (value === 0) return
                             onChange(value - 1)
                         }}
                     >
