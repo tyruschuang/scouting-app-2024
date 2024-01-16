@@ -70,7 +70,6 @@ export default function MatchScout() {
                 {data.stage === MatchStage.POST_MATCH &&
                     <Button fullWidth color={"success"} variant={"outlined"} onClick={() => {
                         data.submit()
-                        data.reset()
                         update()
                     }}>
                         Submit

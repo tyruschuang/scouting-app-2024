@@ -118,7 +118,7 @@ export default class MatchScoutData {
         console.log(this.data);
         // TODO: submit data to server
 
-        this.reset();
+        window.location.reload();
 
         return true
     }
@@ -134,6 +134,8 @@ export default class MatchScoutData {
 
     reset() {
         this.stage = MatchStage.PRE_MATCH;
+        this.history = [];
+        this.historyCounter = 0;
         this.data = defaultData;
     }
 }
