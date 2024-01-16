@@ -152,7 +152,7 @@ export default class MatchScoutData {
                 valid: false,
                 message: "Please select your team's alliance."
             }
-            else if (this.get(MatchStage.PRE_MATCH, "driver_station") === "") alert = {
+            else if (![1, 2, 3].includes(this.get(MatchStage.PRE_MATCH, "driver_station"))) alert = {
                 valid: false,
                 message: "Please select your team's driver station."
             }
