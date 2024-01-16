@@ -23,6 +23,7 @@ export default function MSPrematch(props) {
                     options={Scouters}
                     value={data.get(MatchStage.PRE_MATCH, "name")}
                     onChange={(newValue) => {
+                        // TODO: Autofill based off of name
                         data.set(MatchStage.PRE_MATCH, "name", newValue)
                         update()
                     }}
