@@ -41,6 +41,7 @@ export const Constants = {
 
     field: require("./assets/field.png"),
 
+    // TODO: Images!
     developers: [
         {
             name: "Tyrus Chuang",

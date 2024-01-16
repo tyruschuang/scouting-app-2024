@@ -4,12 +4,14 @@ import NotFound from "./components/pages/NotFound";
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import {theme} from "./Theme";
 import {Constants} from "./Constants";
+import Header from "./components/Header";
 
 export default function App() {
     return (
         <>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
+                <Header/>
                 <BrowserRouter>
                     <Routes>
                         <Route element={<Outlet/>}>
