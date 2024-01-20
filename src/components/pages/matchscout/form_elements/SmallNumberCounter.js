@@ -10,12 +10,15 @@ export default function SmallNumberCounter(props) {
     const value = props.value
     const onChange = props.onChange
 
+    const max = props.max || 99999
+
     return (
         <Grid2 xs={12} sm={6}>
             <Stack direction={"row"} spacing={1}>
                 <IconButton
                     onClick={() => {
                         if (value === 0) return
+                        if (value >= max) return
                         onChange(value - 1)
                     }}
                 >

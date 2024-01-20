@@ -1,16 +1,9 @@
-import {Box, Rating, Stack, Typography} from "@mui/material";
-import {useState} from "react";
+import {Box, Input, Rating, Stack, Typography} from "@mui/material";
+import React, {useState} from "react";
 import StarIcon from '@mui/icons-material/Star';
 import Grid2 from "@mui/material/Unstable_Grid2";
-
-// TODO: Change these labels
-const defaultLabels = {
-    1: 'Nuisance',
-    2: 'Below Average',
-    3: 'Average',
-    4: 'Above Average',
-    5: 'Excellent',
-}
+import Slider from "@mui/material/Slider";
+import SmallNumberCounter from "./SmallNumberCounter";
 
 export default function CustomRating(props) {
 
@@ -20,29 +13,42 @@ export default function CustomRating(props) {
     const title = props.title
     const description = props.description
 
-    const labels = props.labels || defaultLabels
+    const label = props.label
 
-    const [hover, setHover] = useState(-1)
+    const min = props.min || 0
+    const max = props.max || 10
+    const step = props.step || 1
 
     return (
         <Grid2 xs={12} sm={6}>
             <Stack spacing={1} direction={"column"}>
                 <Typography variant={"h4"}>{title}</Typography>
                 <Typography variant={"subtitle1"}>{description}</Typography>
-                <Stack spacing={2} direction={"row"}>
-                    <Rating
+                <Stack direction={"column"} spacing={-2}>
+                    <Box sx={{
+                        px: 6
+                    }}>
+                        <Slider
+                            min={min}
+                            max={max}
+                            step={step}
+                            marks
+                            value={value}
+                            onChange={(event, newValue) => {
+                                onChange(newValue)
+                            }}
+                            aria-labelledby="slider"
+                            valueLabelDisplay="auto"
+                            valueLabelFormat={(value) => `${value} ${label}`}
+                        />
+                    </Box>
+                    <SmallNumberCounter
+                        label={label}
                         value={value}
-                        onChange={(event, newValue) => {
+                        onChange={(newValue) => {
                             onChange(newValue)
                         }}
-                        onChangeActive={(event, newHover) => {
-                            setHover(newHover);
-                        }}
-                        emptyIcon={<StarIcon style={{opacity: 0.55}} fontSize="inherit"/>}
                     />
-                    {value >= 0 && (
-                        <Box sx={{ml: 2}}>{labels[hover !== -1 ? hover : value]}</Box>
-                    )}
                 </Stack>
             </Stack>
         </Grid2>

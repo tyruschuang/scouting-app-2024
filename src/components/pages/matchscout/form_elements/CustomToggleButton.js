@@ -8,20 +8,28 @@ export default function CustomToggleButton(props) {
     const label = props.label
     const onClick = props.onClick
     const value = props.value
+    const showCheckbox = props.showCheckbox
 
     return (
         <Grid2 xs={12} sx={{
             ...props.sx
         }}>
             <Button
-                variant={value ? "contained" : "filled"}
+                variant={value ? "contained" : "outlined"}
                 color={"inherit"}
                 onClick={() => {
                     onClick(!value)
                 }}
                 fullWidth
             >
-                {value ? <CheckBoxIcon/> : <CheckBoxOutlineBlankIcon/>}
+                {
+                    showCheckbox ?
+                        (value ?
+                            <CheckBoxIcon/> :
+                            <CheckBoxOutlineBlankIcon/>)
+                        : null
+
+                }
                 <Box sx={{
                     mx: 1
                 }}/>
