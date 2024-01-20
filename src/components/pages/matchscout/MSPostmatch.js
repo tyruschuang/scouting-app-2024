@@ -3,9 +3,7 @@ import {useState} from "react";
 import CustomRating from "./form_elements/CustomRating";
 import {MatchStage} from "../../MatchConstants";
 import Undo from "./form_elements/Undo";
-import {Collapse, Divider} from "@mui/material";
 import CustomInput from "./form_elements/CustomInput";
-import CustomToggleButton from "./form_elements/CustomToggleButton";
 
 export default function MSPostmatch(props) {
     const [data, _] = useState(props.data);
@@ -43,20 +41,20 @@ export default function MSPostmatch(props) {
                     }}
                 />
 
-                    <CustomInput
-                        label={"Comments on Defense"}
-                        helperText={
-                            "If this team played defense, how did they do? Describe in great detail."
-                        }
-                        type={"text"}
-                        multiline={true}
-                        fullWidth={true}
-                        value={data.get(MatchStage.POST_MATCH, "defense")}
-                        onChange={(newValue) => {
-                            data.set(MatchStage.POST_MATCH, "defense", newValue);
-                            update();
-                        }}
-                    />
+                <CustomInput
+                    label={"Comments on Defense"}
+                    helperText={
+                        "If this team played defense, how did they do? Describe in great detail."
+                    }
+                    type={"text"}
+                    multiline={true}
+                    fullWidth={true}
+                    value={data.get(MatchStage.POST_MATCH, "defense")}
+                    onChange={(newValue) => {
+                        data.set(MatchStage.POST_MATCH, "defense", newValue);
+                        update();
+                    }}
+                />
             </Grid2>
             <Undo data={data} update={() => update()}/>
         </>

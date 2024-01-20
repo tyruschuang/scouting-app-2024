@@ -1,6 +1,5 @@
-import {Box, Input, Rating, Stack, Typography} from "@mui/material";
-import React, {useState} from "react";
-import StarIcon from '@mui/icons-material/Star';
+import {Box, Stack, Typography} from "@mui/material";
+import React from "react";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import Slider from "@mui/material/Slider";
 import SmallNumberCounter from "./SmallNumberCounter";

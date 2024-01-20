@@ -5,7 +5,7 @@ import Undo from "./form_elements/Undo";
 import CustomToggleButton from "./form_elements/CustomToggleButton";
 import SmallNumberCounter from "./form_elements/SmallNumberCounter";
 import CustomRating from "./form_elements/CustomRating";
-import {Button, Collapse} from "@mui/material";
+import {Collapse} from "@mui/material";
 
 
 export default function MSTeleop(props) {
@@ -81,15 +81,15 @@ export default function MSTeleop(props) {
                         }
                         label={"second(s)"}
                     />
-                        <CustomToggleButton
-                            showCheckbox={false}
-                            label={"Harmony?"}
-                            value={data.get(MatchStage.TELEOP, "harmony")}
-                            onClick={(newValue) => {
-                                data.set(MatchStage.TELEOP, "harmony", newValue);
-                                update();
-                            }}
-/>
+                    <CustomToggleButton
+                        showCheckbox={false}
+                        label={"Harmony?"}
+                        value={data.get(MatchStage.TELEOP, "harmony")}
+                        onClick={(newValue) => {
+                            data.set(MatchStage.TELEOP, "harmony", newValue);
+                            update();
+                        }}
+                    />
                 </Collapse>
 
                 <CustomRating
