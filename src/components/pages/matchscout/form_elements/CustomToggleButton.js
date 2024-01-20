@@ -16,7 +16,7 @@ export default function CustomToggleButton(props) {
         }}>
             <Button
                 variant={value ? "contained" : "outlined"}
-                color={"inherit"}
+                    color={!showCheckbox ? (value ? "primary" : "inherit") : "inherit"}
                 onClick={() => {
                     onClick(!value)
                 }}
