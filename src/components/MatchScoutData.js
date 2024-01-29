@@ -14,36 +14,19 @@ const defaultData = [
     {
         stage: MatchStage.AUTO,
         leave: false,
-        gp1_intake: "PRELOAD",
-        gp1_outtake: "",
-        gp2_intake: "",
-        gp2_outtake: "",
-        gp3_intake: "",
-        gp3_outtake: "",
-        gp4_intake: "",
-        gp4_outtake: "",
-        gp5_intake: "",
-        gp5_outtake: "",
-        gp6_intake: "",
-        gp6_outtake: "",
-        gp7_intake: "",
-        gp7_outtake: "",
-        gp8_intake: "",
-        gp8_outtake: "",
-        gp9_intake: "",
-        gp9_outtake: "",
+        io: [
+            {
+                intake: "PRELOAD",
+            },
+        ],
     },
     {
         stage: MatchStage.TELEOP,
-        intakes: 0,
-        amp_outtakes: 0,
-        speaker_outtakes: 0,
-        dropped: 0,
-        missed: 0,
-        trap: 0,
+        io: [],
         onstage: false,
         onstage_time: 0,
         harmony: false,
+        trap: 0,
     },
     {
         stage: MatchStage.POST_MATCH,
@@ -86,6 +69,36 @@ export default class MatchScoutData {
         this.data[stage][path] = value;
     }
 
+    clearIO(stage, index) {
+        this.history.push({
+            id: ++this.historyCounter,
+            stage: stage,
+            path: "io",
+            value: this.data[stage]["io"],
+            time: new Date(),
+        });
+        this.data[stage]["io"][index] = {};
+    }
+
+    setIO(stage, index, type, value) {
+        this.history.push({
+            id: ++this.historyCounter,
+            stage: stage,
+            path: "io",
+            index: index,
+            value: {},
+            time: new Date(),
+        });
+        this.data[stage]["io"][index][type] = value;
+    }
+
+    getIO(stage, index, type) {
+        if (this.data[stage]["io"][index] === undefined) {
+            this.data[stage]["io"][index] = {};
+        }
+        return this.data[stage]["io"][index][type];
+    }
+
     // TODO: Nothing was undone notification
     undo() {
         if (this.history.length === 0) return;
@@ -99,7 +112,11 @@ export default class MatchScoutData {
 
         if (entriesToUndo.length === 0) return;
         entriesToUndo.reverse().forEach((entry) => {
-            this.data[entry.stage][entry.path] = entry.value;
+            if (entry.index !== undefined) {
+                this.data[entry.stage][entry.path][entry.index] = entry.value;
+            } else {
+                this.data[entry.stage][entry.path] = entry.value;
+            }
         });
 
         this.history = this.history.filter((entry) => {
@@ -117,7 +134,6 @@ export default class MatchScoutData {
         // Add extra metadata
         this.set(MatchStage.METADATA, "timestamp", Date.now());
 
-        console.log(this.data);
         // TODO: submit data to server
 
         window.location.reload();

@@ -18,9 +18,25 @@ export const AutoIntakePosition = Object.freeze({
     CENTER_5: 8,
 })
 
+export const TeleopIntakePosition = Object.freeze({
+    SOURCE: 1,
+    GROUND: 2
+})
+
 export const OuttakePosition = Object.freeze({
     SPEAKER: 1,
     AMP: 2,
     DROPPED: 3,
     MISSED: 4,
 })
+
+export function getMarkerLabel(stage, type, id) {
+    if (type === 0) {
+        return Object.keys(OuttakePosition)[id - 1];
+    } else {
+        return (Object.keys(stage === MatchStage.AUTO ? AutoIntakePosition : TeleopIntakePosition)[id - (stage === MatchStage.AUTO ? 0 : 1)] || "NONE SELECTED").replace(
+            "_",
+            " "
+        );
+    }
+}

@@ -1,11 +1,9 @@
-import Grid2 from "@mui/material/Unstable_Grid2";
 import {useState} from "react";
 import {MatchStage} from "../../MatchConstants";
-import Undo from "./form_elements/Undo";
 import CustomToggleButton from "./form_elements/CustomToggleButton";
-import SmallNumberCounter from "./form_elements/SmallNumberCounter";
 import CustomRating from "./form_elements/CustomRating";
-import {Collapse} from "@mui/material";
+import {Collapse, Stack} from "@mui/material";
+import Map from "./form_elements/map/Map";
 
 
 export default function MSTeleop(props) {
@@ -18,47 +16,7 @@ export default function MSTeleop(props) {
 
     return (
         <>
-            <Grid2 container spacing={3}>
-                <SmallNumberCounter
-                    label={"Notes Intaked"}
-                    value={data.get(MatchStage.TELEOP, "intakes")}
-                    onChange={(newValue) => {
-                        data.set(MatchStage.TELEOP, "intakes", newValue);
-                        update();
-                    }}
-                />
-                <SmallNumberCounter
-                    label={"Amp Outtakes"}
-                    value={data.get(MatchStage.TELEOP, "amp_outtakes")}
-                    onChange={(newValue) => {
-                        data.set(MatchStage.TELEOP, "amp_outtakes", newValue);
-                        update();
-                    }}
-                />
-                <SmallNumberCounter
-                    label={"Speaker Outtakes"}
-                    value={data.get(MatchStage.TELEOP, "speaker_outtakes")}
-                    onChange={(newValue) => {
-                        data.set(MatchStage.TELEOP, "speaker_outtakes", newValue);
-                        update();
-                    }}
-                />
-                <SmallNumberCounter
-                    label={"Dropped"}
-                    value={data.get(MatchStage.TELEOP, "dropped")}
-                    onChange={(newValue) => {
-                        data.set(MatchStage.TELEOP, "dropped", newValue);
-                        update();
-                    }}
-                />
-                <SmallNumberCounter
-                    label={"Missed"}
-                    value={data.get(MatchStage.TELEOP, "missed")}
-                    onChange={(newValue) => {
-                        data.set(MatchStage.TELEOP, "missed", newValue);
-                        update();
-                    }}
-                />
+            <Stack direction={"column"} spacing={3}>
                 <CustomToggleButton
                     label={"Onstage?"}
                     value={data.get(MatchStage.TELEOP, "onstage")}
@@ -106,8 +64,8 @@ export default function MSTeleop(props) {
                     min={0}
                     max={3}
                 />
-            </Grid2>
-            <Undo data={data} update={() => update()}/>
+                <Map selectedIntakeLocation={-1} data={data} update={update} type={"teleop"}/>
+            </Stack>
         </>
     );
 }

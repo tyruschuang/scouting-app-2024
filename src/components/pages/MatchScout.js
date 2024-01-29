@@ -101,7 +101,6 @@ export default function MatchScout() {
                         fullWidth
                         variant={"outlined"}
                         onClick={() => {
-                            console.log(data.validate());
                             if (data.validate().valid) {
                                 data.stage++;
                             }

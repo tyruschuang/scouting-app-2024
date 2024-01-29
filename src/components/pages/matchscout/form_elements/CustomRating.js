@@ -23,7 +23,7 @@ export default function CustomRating(props) {
             <Stack spacing={1} direction={"column"}>
                 <Typography variant={"h4"}>{title}</Typography>
                 <Typography variant={"subtitle1"}>{description}</Typography>
-                <Stack direction={"column"} spacing={-2}>
+                <Stack direction={"column"} spacing={1}>
                     <Box sx={{
                         px: 6
                     }}>

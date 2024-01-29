@@ -18,7 +18,6 @@ const PitScout = () => {
         // Access the Camera component to capture a photo
         try {
             const photo = await this.camera.capture(); // Assuming react-camera-pro provides an asynchronous capture method
-            console.log('Captured Photo:', photo);
             setPhotoCaptured(true);
         } catch (error) {
             console.error('Error capturing photo:', error);
