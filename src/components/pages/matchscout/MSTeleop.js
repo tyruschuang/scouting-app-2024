@@ -17,6 +17,7 @@ export default function MSTeleop(props) {
     return (
         <>
             <Stack direction={"column"} spacing={3}>
+                <Map selectedIntakeLocation={-1} data={data} update={update} type={"teleop"}/>
                 <CustomToggleButton
                     label={"Onstage?"}
                     value={data.get(MatchStage.TELEOP, "onstage")}
@@ -64,7 +65,6 @@ export default function MSTeleop(props) {
                     min={0}
                     max={3}
                 />
-                <Map selectedIntakeLocation={-1} data={data} update={update} type={"teleop"}/>
             </Stack>
         </>
     );
