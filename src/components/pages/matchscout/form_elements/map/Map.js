@@ -10,75 +10,25 @@ import CloseIcon from "@mui/icons-material/Close";
 
 export default function Map(props) {
 
-    const AutoMarkers = [<AutoMarker
-        label={"Wing Ring #1"}
-        x={17.5}
-        y={14.25}
-        id={1}
-        type={1}
-    />,
-        <AutoMarker
-            label={"Wing Ring #2"}
-            x={17.5}
-            y={31.25}
-            id={2}
-            type={1}
-        />,
-        <AutoMarker
-            label={"Wing Ring #3"}
-            x={17.5}
-            y={48.1}
-            id={3}
-            type={1}
-        />,
+    const AutoMarkers = [
+        <AutoMarker label={"Wing Ring #1"} x={17.5} y={14.25} id={1} type={1}/>,
+        <AutoMarker label={"Wing Ring #2"} x={17.5} y={31.25} id={2} type={1}/>,
+        <AutoMarker label={"Wing Ring #3"} x={17.5} y={48.1} id={3} type={1}/>,
         <AutoMarker label={"Center Ring #1"} x={50} y={9} id={4} type={1}/>,
-        <AutoMarker
-            label={"Center Ring #2"}
-            x={50}
-            y={28.25}
-            id={5}
-            type={1}
-        />,
+        <AutoMarker label={"Center Ring #2"} x={50} y={28.25} id={5} type={1}/>,
         <AutoMarker label={"Center Ring #3"} x={50} y={48} id={6} type={1}/>,
-        <AutoMarker
-            label={"Center Ring #4"}
-            x={50}
-            y={67.4}
-            id={7}
-            type={1}
-        />,
+        <AutoMarker label={"Center Ring #4"} x={50} y={67.4} id={7} type={1}/>,
         <AutoMarker label={"Center Ring #5"} x={50} y={87} id={8} type={1}/>,
-        <AutoMarker
-            label={"Speaker Outtake"}
-            x={5}
-            y={31.25}
-            id={1}
-            type={0}
-        />,
-        <AutoMarker label={"Amp Outtake"} x={11} y={5} id={2} type={0}/>];
+        <AutoMarker label={"Speaker Outtake"} x={5} y={31.25} id={1} type={0}/>,
+        <AutoMarker label={"Amp Outtake"} x={11} y={5} id={2} type={0}/>,
+        <AutoMarker label={"Trap Outtake"} x={29.5} y={49} id={5} type={0}/>
+    ];
     const TeleopMarkers = [
-        <AutoMarker
-            label={"Source"}
-            x={94.0}
-            y={85.25}
-            id={1}
-            type={1}
-        />,
-        <AutoMarker
-            label={"Ground"}
-            x={17.5}
-            y={75.25}
-            id={2}
-            type={1}
-        />,
-        <AutoMarker
-        label={"Speaker Outtake"}
-        x={5}
-        y={31.25}
-        id={1}
-        type={0}
-    />,
-        <AutoMarker label={"Amp Outtake"} x={11} y={5} id={2} type={0}/>];
+        <AutoMarker label={"Source"} x={94.0} y={85.25} id={1} type={1}/>,
+        <AutoMarker label={"Ground"} x={17.5} y={75.25} id={2} type={1}/>,
+        <AutoMarker label={"Speaker Outtake"} x={5} y={31.25} id={1} type={0}/>,
+        <AutoMarker label={"Amp Outtake"} x={11} y={5} id={2} type={0}/>
+    ];
 
     function AutoMarker(props) {
         return (
