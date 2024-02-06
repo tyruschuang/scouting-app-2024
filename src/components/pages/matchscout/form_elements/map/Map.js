@@ -27,7 +27,8 @@ export default function Map(props) {
         <AutoMarker label={"Source"} x={94.0} y={85.25} id={1} type={1}/>,
         <AutoMarker label={"Ground"} x={17.5} y={75.25} id={2} type={1}/>,
         <AutoMarker label={"Speaker Outtake"} x={5} y={31.25} id={1} type={0}/>,
-        <AutoMarker label={"Amp Outtake"} x={11} y={5} id={2} type={0}/>
+        <AutoMarker label={"Amp Outtake"} x={11} y={5} id={2} type={0}/>,
+        <AutoMarker label={"Trap Outtake"} x={29.5} y={49} id={5} type={0}/>
     ];
 
     function AutoMarker(props) {

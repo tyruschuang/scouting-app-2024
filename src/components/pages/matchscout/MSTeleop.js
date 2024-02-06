@@ -51,11 +51,6 @@ export default function MSTeleop(props) {
                 </Collapse>
                 <Map selectedIntakeLocation={-1} data={data} update={update} type={"teleop"}/>
             </Stack>
-            MatchConstants
-
-
-
-            
         </>
     );
 }
