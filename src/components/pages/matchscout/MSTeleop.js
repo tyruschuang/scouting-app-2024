@@ -49,21 +49,6 @@ export default function MSTeleop(props) {
                         }}
                     />
                 </Collapse>
-
-                <CustomRating
-                    onChange={(newValue) => {
-                        data.set(MatchStage.TELEOP, "trap", newValue);
-                        update();
-                    }}
-                    value={data.get(MatchStage.TELEOP, "trap")}
-                    title={"Trap Counter *"}
-                    description={
-                        "How many traps did the robot do?"
-                    }
-                    label={"Traps Scored"}
-                    min={0}
-                    max={3}
-                />
                 <Map selectedIntakeLocation={-1} data={data} update={update} type={"teleop"}/>
             </Stack>
         </>
