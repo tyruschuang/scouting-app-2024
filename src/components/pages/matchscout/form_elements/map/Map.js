@@ -58,7 +58,6 @@ export default function Map(props) {
 
     const [showHistory, setShowHistory] = useState(false);
 
-    // 0 for preload
     const [selectedIntakeLocation, setSelectedIntakeLocation] = useState(props.selectedIntakeLocation);
     const [gamePieceCounter, setGamePieceCounter] = useState(1);
     const [history, setHistory] = useState([]);
@@ -133,7 +132,58 @@ export default function Map(props) {
                                     </Typography>
                                 </Typography>
                             </Grid2>
-                            <Grid2 xs={6} sm={12}></Grid2>
+                            <Grid2 xs={12}>
+                                <Button
+                                    fullWidth
+                                    disabled={selectedIntakeLocation === -1}
+                                    variant={"outlined"}
+                                    color={"error"}
+                                    onClick={() => {
+                                        confirmOuttake("MISSED AMP");
+                                    }}
+                                >
+                                    Miss Amp
+                                </Button>
+                            </Grid2>
+                            <Grid2 xs={12}>
+                            <Button
+                                fullWidth
+                                disabled={selectedIntakeLocation === -1}
+                                variant={"outlined"}
+                                color={"error"}
+                                onClick={() => {
+                                    confirmOuttake("MISSED SPEAKER");
+                                }}
+                            >
+                                Miss Speaker
+                            </Button>
+                        </Grid2>
+                            <Grid2 xs={12}>
+                                <Button
+                                    fullWidth
+                                    disabled={selectedIntakeLocation === -1}
+                                    variant={"outlined"}
+                                    color={"error"}
+                                    onClick={() => {
+                                        confirmOuttake("MISSED TRAP");
+                                    }}
+                                >
+                                    Miss Trap
+                                </Button>
+                            </Grid2>
+                            <Grid2 xs={12}>
+                                <Button
+                                    fullWidth
+                                    disabled={selectedIntakeLocation === -1}
+                                    variant={"outlined"}
+                                    color={"error"}
+                                    onClick={() => {
+                                        confirmOuttake("DROPPED");
+                                    }}
+                                >
+                                    Dropped
+                                </Button>
+                            </Grid2>
                         </Grid2>
                     </Stack>
                 </Grid2>
@@ -164,44 +214,7 @@ export default function Map(props) {
                             {markers.map((marker) => {
                                 return marker
                             })}
-                            <Box
-                                sx={{
-                                    position: "absolute",
-                                    top: 0,
-                                    right: 0,
-                                    padding: 1,
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    alignItems: "flex-end",
-                                }}
-                            >
-                                <Button
-                                    fullWidth
-                                    disabled={selectedIntakeLocation === -1}
-                                    variant={"outlined"}
-                                    color={"error"}
-                                    variant={"contained"}
-                                    onClick={() => {
-                                        confirmOuttake("MISSED");
-                                    }}
-                                >
-                                    Missed
-                                </Button>
-                                <Divider sx={{my: 1}}></Divider>
-                                <Button
-                                    fullWidth
-                                    disabled={selectedIntakeLocation === -1}
-                                    variant={"outlined"}
-                                    color={"error"}
-                                    variant={"contained"}
-                                    onClick={() => {
-                                        confirmOuttake("DROPPED");
-                                    }}
-                                >
-                                    Dropped
-                                </Button>
                             </Box>
-                        </Box>
                         <Typography variant={"h6"}>Note #{gamePieceCounter}</Typography>
                     </Stack>
                 </Grid2>

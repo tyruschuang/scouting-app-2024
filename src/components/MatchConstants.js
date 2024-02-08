@@ -27,8 +27,10 @@ export const OuttakePosition = Object.freeze({
     SPEAKER: 1,
     AMP: 2,
     DROPPED: 3,
-    MISSED: 4,
+    MISSED_AMP: 4,
     TRAP: 5,
+    MISSED_SPEAKER: 6,
+    MISSED_TRAP: 7,
 })
 
 export function getMarkerLabel(stage, type, id) {
