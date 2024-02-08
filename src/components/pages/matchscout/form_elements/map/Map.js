@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import {AutoIntakePosition, getMarkerLabel, MatchStage, TeleopIntakePosition} from "../../../../MatchConstants";
+import {AutoIntakePosition, getMarkerLabel, MatchStage} from "../../../../MatchConstants";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import {Box, Button, Collapse, Divider, IconButton, Stack, Typography} from "@mui/material";
+import {Box, Button, Collapse, IconButton, Stack, Typography} from "@mui/material";
 import CustomToggleButton from "../CustomToggleButton";
 import {Constants} from "../../../../../Constants";
 import Undo from "../Undo";
@@ -146,18 +146,18 @@ export default function Map(props) {
                                 </Button>
                             </Grid2>
                             <Grid2 xs={12}>
-                            <Button
-                                fullWidth
-                                disabled={selectedIntakeLocation === -1}
-                                variant={"outlined"}
-                                color={"error"}
-                                onClick={() => {
-                                    confirmOuttake("MISSED SPEAKER");
-                                }}
-                            >
-                                Miss Speaker
-                            </Button>
-                        </Grid2>
+                                <Button
+                                    fullWidth
+                                    disabled={selectedIntakeLocation === -1}
+                                    variant={"outlined"}
+                                    color={"error"}
+                                    onClick={() => {
+                                        confirmOuttake("MISSED SPEAKER");
+                                    }}
+                                >
+                                    Miss Speaker
+                                </Button>
+                            </Grid2>
                             <Grid2 xs={12}>
                                 <Button
                                     fullWidth
@@ -214,7 +214,7 @@ export default function Map(props) {
                             {markers.map((marker) => {
                                 return marker
                             })}
-                            </Box>
+                        </Box>
                         <Typography variant={"h6"}>Note #{gamePieceCounter}</Typography>
                     </Stack>
                 </Grid2>

@@ -7,7 +7,7 @@ const defaultData = [
         team: null,
         match: null,
         name: null,
-        alliance: null  ,
+        alliance: null,
         driver_station: null,
         start_position: null,
     },
