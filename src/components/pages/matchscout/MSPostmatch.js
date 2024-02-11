@@ -16,7 +16,7 @@ export default function MSPostmatch(props) {
     return (
         <>
             <Grid2 container spacing={3}>
-                <CustomRating
+                {/* <CustomRating
                     value={data.get(MatchStage.POST_MATCH, "rating")}
                     onChange={(newValue) => {
                         data.set(MatchStage.POST_MATCH, "rating", newValue);
@@ -25,7 +25,7 @@ export default function MSPostmatch(props) {
                     title={"Cooperation rating"}
                     description={"Did this team help or hinder their alliance? Lower numbers indicate hinder, and vice versa."}
                     label={"Score"}
-                />
+                /> */}
                 <CustomInput
                     required={false}
                     label={"Extra Comments"}

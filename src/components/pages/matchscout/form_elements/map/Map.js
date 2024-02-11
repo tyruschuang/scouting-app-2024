@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {AutoIntakePosition, getMarkerLabel, MatchStage} from "../../../../MatchConstants";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import {Box, Button, Collapse, IconButton, Stack, Typography} from "@mui/material";
+import {Box, Button, Collapse, Divider, IconButton, Stack, Typography} from "@mui/material";
 import CustomToggleButton from "../CustomToggleButton";
 import {Constants} from "../../../../../Constants";
 import Undo from "../Undo";
@@ -62,9 +62,14 @@ export default function Map(props) {
     const [gamePieceCounter, setGamePieceCounter] = useState(1);
     const [history, setHistory] = useState([]);
 
+    const [missedSelected, setMissedSelected] = useState(false);
+
     const update = props.update
 
     const confirmOuttake = (type) => {
+        if (missedSelected) {
+            type = `MISSED ${type}`
+        }
         data.setIO(
             matchStage,
             gamePieceCounter - 1,
@@ -80,6 +85,7 @@ export default function Map(props) {
         setHistory([...history, selectedIntakeLocation]);
         setSelectedIntakeLocation(-1);
         setGamePieceCounter(gamePieceCounter + 1);
+        setMissedSelected(false);
     };
 
     const updateHistory = () => {
@@ -132,58 +138,6 @@ export default function Map(props) {
                                     </Typography>
                                 </Typography>
                             </Grid2>
-                            <Grid2 xs={12}>
-                                <Button
-                                    fullWidth
-                                    disabled={selectedIntakeLocation === -1}
-                                    variant={"outlined"}
-                                    color={"error"}
-                                    onClick={() => {
-                                        confirmOuttake("MISSED AMP");
-                                    }}
-                                >
-                                    Miss Amp
-                                </Button>
-                            </Grid2>
-                            <Grid2 xs={12}>
-                                <Button
-                                    fullWidth
-                                    disabled={selectedIntakeLocation === -1}
-                                    variant={"outlined"}
-                                    color={"error"}
-                                    onClick={() => {
-                                        confirmOuttake("MISSED SPEAKER");
-                                    }}
-                                >
-                                    Miss Speaker
-                                </Button>
-                            </Grid2>
-                            <Grid2 xs={12}>
-                                <Button
-                                    fullWidth
-                                    disabled={selectedIntakeLocation === -1}
-                                    variant={"outlined"}
-                                    color={"error"}
-                                    onClick={() => {
-                                        confirmOuttake("MISSED TRAP");
-                                    }}
-                                >
-                                    Miss Trap
-                                </Button>
-                            </Grid2>
-                            <Grid2 xs={12}>
-                                <Button
-                                    fullWidth
-                                    disabled={selectedIntakeLocation === -1}
-                                    variant={"outlined"}
-                                    color={"error"}
-                                    onClick={() => {
-                                        confirmOuttake("DROPPED");
-                                    }}
-                                >
-                                    Dropped
-                                </Button>
-                            </Grid2>
                         </Grid2>
                     </Stack>
                 </Grid2>
@@ -214,6 +168,41 @@ export default function Map(props) {
                             {markers.map((marker) => {
                                 return marker
                             })}
+                            <Box
+                                sx={{
+                                    position: "absolute",
+                                    top: 0,
+                                    right: 0,
+                                    padding: 1,
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    alignItems: "flex-end",
+                                }}
+                            >
+                                <Button
+                                    fullWidth
+                                    disabled={selectedIntakeLocation === -1}
+                                    variant={"contained"}
+                                    color={missedSelected ? "unselected" : "error"}
+                                    onClick={() => {
+                                        setMissedSelected(true);
+                                    }}
+                                >
+                                    Missed
+                                </Button>
+                                <Divider sx={{my: 1}}></Divider>
+                                <Button
+                                    fullWidth
+                                    disabled={selectedIntakeLocation === -1}
+                                    variant={"contained"}
+                                    color={"error"}
+                                    onClick={() => {
+                                        confirmOuttake("DROPPED");
+                                    }}
+                                >
+                                    Dropped
+                                </Button>
+                            </Box>
                         </Box>
                         <Typography variant={"h6"}>Note #{gamePieceCounter}</Typography>
                     </Stack>

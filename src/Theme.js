@@ -10,6 +10,7 @@ export const theme = createTheme({
 
         success: lightGreen,
         error: red,
+        unselected: {main: '#ff7f7f',}
     },
 
     // typography: {
