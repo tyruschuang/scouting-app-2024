@@ -202,6 +202,20 @@ export default function Map(props) {
                                 >
                                     Dropped
                                 </Button>
+                                <Divider sx={{my: 1}}></Divider>
+                                {(gamePieceCounter === 1 || matchStage === matchStage.TELEOP) &&
+                                <Button
+                                    fullWidth
+                                    disabled={selectedIntakeLocation !== -1}
+                                    variant={"contained"}
+                                    color={"secondary"}
+                                    onClick={() => {
+                                        setSelectedIntakeLocation(0)
+                                        
+                                    }}
+                                    >
+                                    Pre-loaded
+                                </Button>}
                             </Box>
                         </Box>
                         <Typography variant={"h6"}>Note #{gamePieceCounter}</Typography>

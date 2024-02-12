@@ -19,6 +19,7 @@ export const AutoIntakePosition = Object.freeze({
 })
 
 export const TeleopIntakePosition = Object.freeze({
+    PRELOAD: 0,
     SOURCE: 1,
     GROUND: 2
 })
@@ -37,7 +38,7 @@ export function getMarkerLabel(stage, type, id) {
     if (type === 0) {
         return Object.keys(OuttakePosition)[id - 1];
     } else {
-        return (Object.keys(stage === MatchStage.AUTO ? AutoIntakePosition : TeleopIntakePosition)[id - (stage === MatchStage.AUTO ? 0 : 1)] || "NONE SELECTED").replace(
+        return (Object.keys(stage === MatchStage.AUTO ? AutoIntakePosition : TeleopIntakePosition)[id] || "NONE SELECTED").replace(
             "_",
             " "
         );
