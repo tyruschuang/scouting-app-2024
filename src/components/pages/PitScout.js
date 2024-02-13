@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
-import {Button, Container, Paper, TextField, Typography} from '@mui/material';
+import {Button, Container, Stack, TextField, Typography} from '@mui/material';
 
-const PitScout = () => {
+const PitScout = (props) => {
     const [teamNumber, setTeamNumber] = useState('');
     const [robotFeatures, setRobotFeatures] = useState('');
     const [isPhotoCaptured, setPhotoCaptured] = useState(false);
+    const [understage, setUnderstage] = useState(false);
+    const [extraNotes, setExtraNotes] = useState('');
+    const [batteryNumber, setBatteryNumber] = useState();
 
     const handleTeamNumberChange = (event) => {
         setTeamNumber(event.target.value);
@@ -24,6 +27,26 @@ const PitScout = () => {
         }
     };
 
+    const handleUnderstage = () => {
+        if (understage) {
+            setUnderstage(false);
+        }
+        else {
+            setUnderstage(true);
+        }
+    }
+
+    const handleExtraNotes = (event) => {
+        setExtraNotes(event.target.value);
+    }
+
+    const handleBatteryNumber = (event) => {
+        const newBatteryNumber = event.target.value;
+        if (newBatteryNumber === '' || (!isNaN(newBatteryNumber) && newBatteryNumber >= 0)) {
+            setBatteryNumber(newBatteryNumber); 
+        }      
+    }
+
     const handleSubmit = () => {
         // You can handle the form submission logic here
         console.log(`Scouting Team ${teamNumber}'s pit with features: ${robotFeatures}`);
@@ -31,8 +54,8 @@ const PitScout = () => {
     };
 
     return (
-        <Container maxWidth="md">
-            <Paper elevation={3} style={{padding: '20px', marginTop: '20px'}}>
+        <Container maxWidth="md" style={{padding: '20px', marginTop: '20px'}}>
+            <Stack direction={"column"} spacing={2}>
                 <Typography variant="h4" gutterBottom>
                     Pit Scouting Form
                 </Typography>
@@ -64,10 +87,45 @@ const PitScout = () => {
                     value={robotFeatures}
                     onChange={handleRobotFeaturesChange}
                 />
-                <Button variant="contained" color="primary" fullWidth onClick={handleSubmit}>
+                <Button
+                    fullWidth
+                    variant={understage ? "contained" : "outlined"}
+                    color={understage ? "primary" : "white"}
+                    margin="normal"
+                    onClick={()=>{
+                        handleUnderstage();
+                    }}
+                >
+                    Understage?
+                </Button>
+                <TextField
+                    aria-label="Battery Number"
+                    placeholder="0"
+                    type="number"
+                    fullWidth
+                    margin="normal"
+                    min={0}
+                    value={batteryNumber}
+                    onChange={handleBatteryNumber}
+                    />
+                <TextField
+                    label="Extra Notes"
+                    variant="outlined"
+                    multiline
+                    rows={2}
+                    fullWidth
+                    margin="normal"
+                    value={extraNotes}
+                    onChange={handleExtraNotes}
+                />
+                <Button
+                    color={"success"}
+                    variant={"outlined"}
+                    fullWidth
+                    onClick={handleSubmit}>
                     Submit Pit Scout
                 </Button>
-            </Paper>
+            </Stack>
         </Container>
     );
 };
