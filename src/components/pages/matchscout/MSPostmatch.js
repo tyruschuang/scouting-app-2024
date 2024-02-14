@@ -1,13 +1,18 @@
 import Grid2 from "@mui/material/Unstable_Grid2";
+import {Box, Collapse, Slider, Stack} from "@mui/material";
 import {useState} from "react";
-import CustomRating from "./form_elements/CustomRating";
 import {MatchStage} from "../../MatchConstants";
 import Undo from "./form_elements/Undo";
 import CustomInput from "./form_elements/CustomInput";
+import CustomToggleButton from "./form_elements/CustomToggleButton";
+import CustomRating from "./form_elements/CustomRating";
+import SmallNumberCounter from "./form_elements/SmallNumberCounter";
 
 export default function MSPostmatch(props) {
     const [data, _] = useState(props.data);
     const [counter, setCounter] = useState(0);
+
+    const onChange = props.onChange;
 
     const update = () => {
         setCounter(counter + 1);
@@ -26,6 +31,31 @@ export default function MSPostmatch(props) {
                     description={"Did this team help or hinder their alliance? Lower numbers indicate hinder, and vice versa."}
                     label={"Score"}
                 /> */}
+                <CustomToggleButton
+                    label={"Has Human Player on Alliance?"}
+                    value={data.get(MatchStage.POST_MATCH, "player")}
+                    onClick={(newValue) => {
+                        data.set(MatchStage.POST_MATCH, "player", newValue);
+                        data.set(MatchStage.POST_MATCH, "onstage", newValue);
+                        update();
+                    }}
+                    showCheckbox
+                />
+                <Collapse in={data.get(MatchStage.POST_MATCH, "onstage")}>
+                    <CustomRating
+                        onChange={(newValue) => {
+                            data.set(MatchStage.POST_MATCH, "highNotes", newValue);
+                            update();
+                        }}
+                        value={data.get(MatchStage.POST_MATCH, "highNotes")}
+                        title={"High Notes Scored"}
+                        description={
+                            "How many high notes did the human player score."
+                        }
+                        label={"high note(s)"}
+                        max={3}
+                    />
+                </Collapse>
                 <CustomInput
                     required={false}
                     label={"Extra Comments"}

@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
-import {Button, Container, Stack, TextField, Typography} from '@mui/material';
+import {Button, Container, FormControl, InputLabel, Select, MenuItem, Stack, TextField, Typography} from '@mui/material';
+import SmallNumberCounter from "./matchscout/form_elements/SmallNumberCounter";
 
 const PitScout = (props) => {
     const [teamNumber, setTeamNumber] = useState('');
     const [robotFeatures, setRobotFeatures] = useState('');
+    const [drivetrain, setDrivetrain] = useState("");
+    const [intake, setIntake] = useState("");
+    const [outtake, setOuttake] = useState("");
+    const [robotType, setRobotType] = useState("");
     const [isPhotoCaptured, setPhotoCaptured] = useState(false);
     const [understage, setUnderstage] = useState(false);
-    const [extraNotes, setExtraNotes] = useState('');
-    const [batteryNumber, setBatteryNumber] = useState();
+    const [batteryNumber, setBatteryNumber] = useState(0);
 
     const handleTeamNumberChange = (event) => {
         setTeamNumber(event.target.value);
@@ -16,6 +20,22 @@ const PitScout = (props) => {
     const handleRobotFeaturesChange = (event) => {
         setRobotFeatures(event.target.value);
     };
+
+    const handleDrivetrain = (event) => {
+        setDrivetrain(event.target.value);
+    };
+
+    const handleIntake = (event) => {
+        setIntake(event.target.value);
+    };
+
+    const handleOuttake = (event) => {
+        setOuttake(event.target.value);
+    };
+
+    const handleRobotType = (event) => {
+        setRobotType(event.target.value)
+    }
 
     const handleCapturePhoto = async () => {
         // Access the Camera component to capture a photo
@@ -36,14 +56,9 @@ const PitScout = (props) => {
         }
     }
 
-    const handleExtraNotes = (event) => {
-        setExtraNotes(event.target.value);
-    }
-
-    const handleBatteryNumber = (event) => {
-        const newBatteryNumber = event.target.value;
-        if (newBatteryNumber === '' || (!isNaN(newBatteryNumber) && newBatteryNumber >= 0)) {
-            setBatteryNumber(newBatteryNumber); 
+    const handleBatteryNumber = (newValue) => {
+        if (newValue === '' || (!isNaN(newValue) && newValue >= 0)) {
+            setBatteryNumber(newValue); 
         }      
     }
 
@@ -72,12 +87,59 @@ const PitScout = (props) => {
                 <TextField
                     label="Team Number"
                     variant="outlined"
-                    fullWidth
-                    margin="normal"
                     value={teamNumber}
                     onChange={handleTeamNumberChange}
                 />
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Drivetrain</InputLabel>
+                    <Select
+                        value={drivetrain}
+                        label="Drivetrain"
+                        onChange={handleDrivetrain}>
+                        <MenuItem value={0}></MenuItem>
+                        <MenuItem value={1}>Tank</MenuItem>
+                        <MenuItem value={2}>Swerve</MenuItem>
+                        <MenuItem value={3}>H-Drive</MenuItem>
+                        <MenuItem value={4}>Mecanum</MenuItem>
+                        <MenuItem value={5}>Slide</MenuItem>
+                        <MenuItem value={6}>Other</MenuItem>
+                    </Select>
+                </FormControl>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Robot Type</InputLabel>
+                    <Select
+                        fullWidth
+                        margin="normal"
+                        value={robotType}
+                        label={"Robot Type"}
+                        onChange={handleRobotType}>
+                        <MenuItem value={0}></MenuItem>
+                        <MenuItem value={1}>WCP Competitive Concept</MenuItem>
+                        <MenuItem value={2}>Everybot</MenuItem>
+                        <MenuItem value={3}>Kitbot</MenuItem>
+                    </Select>
+                </FormControl>
                 <TextField
+                    label="Intake"
+                    variant="outlined"
+                    multiline
+                    rows={1}
+                    value={intake}
+                    onChange={handleIntake}
+                />
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Outtake</InputLabel>
+                    <Select
+                        fullWidth
+                        margin="normal"
+                        value={outtake}
+                        label={"Outtake"}
+                        onChange={handleOuttake}>
+                        <MenuItem value={0}></MenuItem>
+                        <MenuItem value={1}>Outtake Options</MenuItem>
+                    </Select>
+                </FormControl>
+                {/* <TextField
                     label="Robot Features"
                     variant="outlined"
                     multiline
@@ -86,19 +148,25 @@ const PitScout = (props) => {
                     margin="normal"
                     value={robotFeatures}
                     onChange={handleRobotFeaturesChange}
-                />
+                /> */}
                 <Button
                     fullWidth
                     variant={understage ? "contained" : "outlined"}
                     color={understage ? "primary" : "white"}
-                    margin="normal"
                     onClick={()=>{
                         handleUnderstage();
                     }}
                 >
-                    Understage?
+                    Goes Under Stage?
                 </Button>
-                <TextField
+                <SmallNumberCounter
+                    label={"Battery Number"}
+                    value={batteryNumber}
+                    onChange={(newValue) => {
+                        handleBatteryNumber(newValue)
+                    }}
+                />
+                {/* <TextField
                     aria-label="Battery Number"
                     placeholder="0"
                     type="number"
@@ -107,17 +175,7 @@ const PitScout = (props) => {
                     min={0}
                     value={batteryNumber}
                     onChange={handleBatteryNumber}
-                    />
-                <TextField
-                    label="Extra Notes"
-                    variant="outlined"
-                    multiline
-                    rows={2}
-                    fullWidth
-                    margin="normal"
-                    value={extraNotes}
-                    onChange={handleExtraNotes}
-                />
+                /> */}
                 <Button
                     color={"success"}
                     variant={"outlined"}
