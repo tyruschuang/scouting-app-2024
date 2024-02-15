@@ -1,6 +1,8 @@
 import {MatchStage} from "./MatchConstants";
 import {Scouters} from "./Scouters";
 
+import { collection, addDoc, getFirestore } from 'firebase/firestore';
+
 const defaultData = [
     {
         stage: MatchStage.PRE_MATCH,
@@ -124,7 +126,7 @@ export default class MatchScoutData {
         });
     }
 
-    submit() {
+    async submit() {
         const validation = this.validate(true);
         if (!validation.valid) {
             this.sendAlert(validation.message, "error");
@@ -135,6 +137,7 @@ export default class MatchScoutData {
         this.set(MatchStage.METADATA, "timestamp", Date.now());
 
         // TODO: submit data to server
+        await addDoc(collection(getFirestore(), "testData"), { "data": defaultData });
 
         window.location.reload();
 
