@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Container, FormControl, InputLabel, Select, MenuItem, Stack, TextField, Typography} from '@mui/material';
 import SmallNumberCounter from "./matchscout/form_elements/SmallNumberCounter";
+import CustomInput from "./matchscout/form_elements/CustomInput";
 
 const PitScout = (props) => {
     const [teamNumber, setTeamNumber] = useState('');
@@ -12,6 +13,7 @@ const PitScout = (props) => {
     const [isPhotoCaptured, setPhotoCaptured] = useState(false);
     const [understage, setUnderstage] = useState(false);
     const [batteryNumber, setBatteryNumber] = useState(0);
+    const [extraNotes, setExtraNotes] = useState("");
 
     const handleTeamNumberChange = (event) => {
         setTeamNumber(event.target.value);
@@ -59,6 +61,12 @@ const PitScout = (props) => {
     const handleBatteryNumber = (newValue) => {
         if (newValue === '' || (!isNaN(newValue) && newValue >= 0)) {
             setBatteryNumber(newValue); 
+        }      
+    }
+
+    const handleExtraNotes = (newValue) => {
+        if (newValue === '' || (!isNaN(newValue) && newValue >= 0)) {
+            setExtraNotes(newValue); 
         }      
     }
 
@@ -164,6 +172,18 @@ const PitScout = (props) => {
                     value={batteryNumber}
                     onChange={(newValue) => {
                         handleBatteryNumber(newValue)
+                    }}
+                />
+                <CustomInput
+                    required={false}
+                    label={"Extra Comments"}
+                    helperText={
+                        "Anything else you would like to add? For example, how solid did their robot look?"
+                    }
+                    type={"text"}
+                    multiline={true}
+                    onChange={(newValue) => {
+                        handleExtraNotes(newValue)
                     }}
                 />
                 {/* <TextField
