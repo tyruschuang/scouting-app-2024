@@ -32,9 +32,10 @@ const defaultData = [
     },
     {
         stage: MatchStage.POST_MATCH,
-        rating: 0,
         defense: "",
         comments: "",
+        player: false,
+        highNotes: 0,
     },
     {
         stage: MatchStage.METADATA,
