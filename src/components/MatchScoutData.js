@@ -1,11 +1,10 @@
 import {MatchStage} from "./MatchConstants";
 import {Scouters} from "./Scouters";
-
-import { collection, addDoc, getFirestore } from 'firebase/firestore';
+import { collection, addDoc, setDoc, doc, getFirestore } from 'firebase/firestore';
 
 const defaultData = [
     {
-        stage: MatchStage.PRE_MATCH,
+        prematchstage: MatchStage.PRE_MATCH,
         team: null,
         match: null,
         name: null,
@@ -14,7 +13,7 @@ const defaultData = [
         start_position: null,
     },
     {
-        stage: MatchStage.AUTO,
+        autostage: MatchStage.AUTO,
         leave: false,
         io: [
             {
@@ -23,7 +22,7 @@ const defaultData = [
         ],
     },
     {
-        stage: MatchStage.TELEOP,
+        teleopstage: MatchStage.TELEOP,
         io: [],
         onstage: false,
         onstage_time: 0,
@@ -31,19 +30,34 @@ const defaultData = [
         trap: 0,
     },
     {
-        stage: MatchStage.POST_MATCH,
+        postmatchstage: MatchStage.POST_MATCH,
         defense: "",
         comments: "",
         player: false,
         highNotes: 0,
     },
     {
-        stage: MatchStage.METADATA,
+        metadatastage: MatchStage.METADATA,
         timestamp: new Date(),
     },
 ];
+var firebaseData = {};
+// var iocount=0
+// for(let i = 0; i < 4; i++) {
+//     defaultData[i].io.forEach(function (item, index) {
+//         iocount+=1
+//       });
+// }
+// console.log(iocount);
+for (const key in defaultData){
+    for (const inner in defaultData[key]){
+    //   console.log(`${inner}:${defaultData[key][inner]}`);
+      firebaseData[`${inner}`] = `${defaultData[key][inner]}`;
+    }
+  }
 
-export default class MatchScoutData {
+  console.log(firebaseData)
+  export default class MatchScoutData {
     constructor() {
         this.stage = MatchStage.PRE_MATCH;
         this.data = defaultData;
@@ -136,9 +150,9 @@ export default class MatchScoutData {
 
         // Add extra metadata
         this.set(MatchStage.METADATA, "timestamp", Date.now());
-
+        const db = getFirestore();
         // TODO: submit data to server
-        await addDoc(collection(getFirestore(), "testData"), { "data": defaultData });
+        await setDoc(doc(db, "testData", defaultData[0].team+"_"+defaultData[0].match), { "data": firebaseData });
 
         window.location.reload();
 

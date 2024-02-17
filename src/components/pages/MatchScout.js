@@ -2,6 +2,7 @@ import {Alert, Button, Collapse, Divider, IconButton, Stack, Typography,} from "
 import Page from "../Page";
 import {useEffect, useMemo, useState} from "react";
 import MatchScoutData from "../MatchScoutData";
+import defaultData from "../MatchScoutData";
 import {MatchStage} from "../MatchConstants";
 import MSAuto from "./matchscout/MSAuto";
 import MSPrematch from "./matchscout/MSPrematch";
@@ -38,7 +39,7 @@ export default function MatchScout() {
                 break;
         }
     }, [counter]);
-
+    console.log(data.data[0].team);
     // TODO: Form and data validation
     return (
         <Page>
