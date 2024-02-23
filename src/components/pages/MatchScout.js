@@ -39,7 +39,6 @@ export default function MatchScout() {
                 break;
         }
     }, [counter]);
-    console.log(data.data[0].team);
     // TODO: Form and data validation
     return (
         <Page>
