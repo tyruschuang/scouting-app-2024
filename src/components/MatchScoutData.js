@@ -147,6 +147,8 @@ const defaultData = [
         var teletrapcount = 0
         var telespeakercount = 0
         var teleampcount = 0
+        var telegroundcount = 0
+        var telesourcecount = 0
         for (let i = 0; i < defaultData[1].io.filter(function(x){ return Object.keys(x).length !== 0}).length; i++) {
             autointake.push(defaultData[1].io[i].intake)
         } 
@@ -175,6 +177,12 @@ const defaultData = [
             if (defaultData[2].io[i].outtake == "AMP") {
                 teletrapcount +=1;
             }
+            if (defaultData[2].io[i].intake == "GROUND") {
+                telegroundcount +=1;
+            }
+            if (defaultData[2].io[i].intake == "SOURCE") {
+                telesourcecount +=1;
+            }
         }
         // console.log(autotrapcount)
         var firebaseData = { autointake: autointake,
@@ -187,7 +195,8 @@ const defaultData = [
             teletrapcount: teletrapcount,
             telespeakercount: telespeakercount,
             teleampcount: teleampcount,
-            
+            telegroundcount: telegroundcount,
+            telesourcecount: telesourcecount
         };
         
         for (const key in defaultData){
