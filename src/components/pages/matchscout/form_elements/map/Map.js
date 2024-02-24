@@ -74,14 +74,9 @@ export default function Map(props) {
   const [gamePieceCounter, setGamePieceCounter] = useState(1);
   const [history, setHistory] = useState([]);
 
-  const [missedSelected, setMissedSelected] = useState(false);
-
   const update = props.update;
 
   const confirmOuttake = (type) => {
-    if (missedSelected) {
-      type = `MISSED ${type}`;
-    }
     data.setIO(
       matchStage,
       gamePieceCounter - 1,
@@ -92,7 +87,6 @@ export default function Map(props) {
     setHistory([...history, selectedIntakeLocation]);
     setSelectedIntakeLocation(-1);
     setGamePieceCounter(gamePieceCounter + 1);
-    setMissedSelected(false);
   };
 
   const updateHistory = () => {
@@ -186,17 +180,6 @@ export default function Map(props) {
                   alignItems: "flex-end",
                 }}
               >
-                <Button
-                  fullWidth
-                  disabled={selectedIntakeLocation === -1}
-                  variant={"contained"}
-                  color={missedSelected ? "unselected" : "error"}
-                  onClick={() => {
-                    setMissedSelected(true);
-                  }}
-                >
-                  Missed
-                </Button>
                 <Divider sx={{ my: 1 }}></Divider>
                 <Button
                   fullWidth
