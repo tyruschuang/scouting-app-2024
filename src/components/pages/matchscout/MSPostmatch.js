@@ -31,7 +31,7 @@ export default function MSPostmatch(props) {
                     description={"Did this team help or hinder their alliance? Lower numbers indicate hinder, and vice versa."}
                     label={"Score"}
                 /> */}
-                <CustomToggleButton
+                {/* <CustomToggleButton
                     label={"Has Human Player on Alliance?"}
                     value={data.get(MatchStage.POST_MATCH, "player")}
                     onClick={(newValue) => {
@@ -55,7 +55,7 @@ export default function MSPostmatch(props) {
                         label={"high note(s)"}
                         max={3}
                     />
-                </Collapse>
+                </Collapse> */}
                 <CustomInput
                     required={false}
                     label={"Extra Comments"}
