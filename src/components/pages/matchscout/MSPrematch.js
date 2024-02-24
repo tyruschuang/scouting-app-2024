@@ -110,7 +110,7 @@ export default function MSPrematch(props) {
           my: 2,
         }}
       />
-      <Button fullWidth color={"primary"} variant={"outlined"}>
+      <Button fullWidth color={"secondary"} variant={"outlined"}>
         Skip
       </Button>
     </>

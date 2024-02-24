@@ -16,29 +16,6 @@ export default function MSTeleop(props) {
   return (
     <>
       <Stack direction={"column"} spacing={3}>
-        <Collapse in={data.get(MatchStage.TELEOP, "onstage")}>
-          <CustomRating
-            onChange={(newValue) => {
-              data.set(MatchStage.TELEOP, "onstage_time", newValue);
-              update();
-            }}
-            value={data.get(MatchStage.TELEOP, "onstage_time")}
-            title={"Onstage Time *"}
-            description={
-              "Give your best estimate as to how long it took the robot to get onstage."
-            }
-            label={"second(s)"}
-          />
-          <CustomToggleButton
-            showCheckbox={false}
-            label={"Harmony?"}
-            value={data.get(MatchStage.TELEOP, "harmony")}
-            onClick={(newValue) => {
-              data.set(MatchStage.TELEOP, "harmony", newValue);
-              update();
-            }}
-          />
-        </Collapse>
         <Map
           selectedIntakeLocation={-1}
           data={data}
@@ -55,6 +32,29 @@ export default function MSTeleop(props) {
           showCheckbox
         />
       </Stack>
+      <Collapse in={data.get(MatchStage.TELEOP, "onstage")}>
+        <CustomRating
+          onChange={(newValue) => {
+            data.set(MatchStage.TELEOP, "onstage_time", newValue);
+            update();
+          }}
+          value={data.get(MatchStage.TELEOP, "onstage_time")}
+          title={"Onstage Time *"}
+          description={
+            "Give your best estimate as to how long it took the robot to get onstage."
+          }
+          label={"second(s)"}
+        />
+        <CustomToggleButton
+          showCheckbox={false}
+          label={"Harmony?"}
+          value={data.get(MatchStage.TELEOP, "harmony")}
+          onClick={(newValue) => {
+            data.set(MatchStage.TELEOP, "harmony", newValue);
+            update();
+          }}
+        />
+      </Collapse>
       <Divider
         sx={{
           my: 4,
