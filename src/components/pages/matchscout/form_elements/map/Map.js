@@ -187,19 +187,19 @@ export default function Map(props) {
                 }}
               >
                 <Button
-                    fullWidth
-                    disabled={selectedIntakeLocation === -1}
-                    variant={"contained"}
-                    color={missedSelected ? "unselected" : "error"}
-                    onClick={() => {
-                        setMissedSelected(true);
-                    }}
+                  sx={{width: "128px"}}
+                  disabled={selectedIntakeLocation === -1}
+                  variant={"contained"}
+                  color={missedSelected ? "unselected" : "error"}
+                  onClick={() => {
+                      setMissedSelected(true);
+                  }}
                 >
                     Missed
                 </Button>
                 <Divider sx={{my: 1}}></Divider>
                 {/* <Button
-                    fullWidth
+                    sx={{width: "128px"}}
                     disabled={selectedIntakeLocation === -1}
                     variant={"contained"}
                     color={"error"}
@@ -210,10 +210,10 @@ export default function Map(props) {
                   Dropped
                 </Button>
                 <Divider sx={{ my: 1 }}></Divider> */}
-                {(gamePieceCounter === 1 ||
-                  matchStage === matchStage.TELEOP) && (
+                {(gamePieceCounter === 1 &&
+                  matchStage === MatchStage.TELEOP) && (
                   <Button
-                    fullWidth
+                    sx={{width: "128px"}}
                     disabled={selectedIntakeLocation !== -1}
                     variant={"contained"}
                     color={"secondary"}
