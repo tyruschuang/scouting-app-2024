@@ -74,19 +74,25 @@ export default function Map(props) {
   const [gamePieceCounter, setGamePieceCounter] = useState(1);
   const [history, setHistory] = useState([]);
 
+  const [missedSelected, setMissedSelected] = useState(false);
+
   const update = props.update;
 
   const confirmOuttake = (type) => {
-    data.setIO(
-      matchStage,
-      gamePieceCounter - 1,
-      "intake",
-      getMarkerLabel(matchStage, 1, selectedIntakeLocation)
-    );
-    data.setIO(matchStage, gamePieceCounter - 1, "outtake", type);
-    setHistory([...history, selectedIntakeLocation]);
-    setSelectedIntakeLocation(-1);
-    setGamePieceCounter(gamePieceCounter + 1);
+    if (missedSelected) {
+      type = `MISSED ${type}`;
+    }
+      data.setIO(
+        matchStage,
+        gamePieceCounter - 1,
+        "intake",
+        getMarkerLabel(matchStage, 1, selectedIntakeLocation)
+      );
+      data.setIO(matchStage, gamePieceCounter - 1, "outtake", type);
+      setHistory([...history, selectedIntakeLocation]);
+      setSelectedIntakeLocation(-1);
+      setGamePieceCounter(gamePieceCounter + 1);
+      setMissedSelected(false);
   };
 
   const updateHistory = () => {
@@ -171,28 +177,39 @@ export default function Map(props) {
               })}
               <Box
                 sx={{
-                  position: "absolute",
-                  top: 0,
-                  right: 0,
-                  padding: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-end",
+                    position: "absolute",
+                    top: 0,
+                    right: 0,
+                    padding: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-end",
                 }}
               >
-                <Divider sx={{ my: 1 }}></Divider>
                 <Button
-                  fullWidth
-                  disabled={selectedIntakeLocation === -1}
-                  variant={"contained"}
-                  color={"error"}
-                  onClick={() => {
-                    confirmOuttake("DROPPED");
-                  }}
+                    fullWidth
+                    disabled={selectedIntakeLocation === -1}
+                    variant={"contained"}
+                    color={missedSelected ? "unselected" : "error"}
+                    onClick={() => {
+                        setMissedSelected(true);
+                    }}
+                >
+                    Missed
+                </Button>
+                <Divider sx={{my: 1}}></Divider>
+                {/* <Button
+                    fullWidth
+                    disabled={selectedIntakeLocation === -1}
+                    variant={"contained"}
+                    color={"error"}
+                    onClick={() => {
+                        confirmOuttake("DROPPED");
+                    }}
                 >
                   Dropped
                 </Button>
-                <Divider sx={{ my: 1 }}></Divider>
+                <Divider sx={{ my: 1 }}></Divider> */}
                 {(gamePieceCounter === 1 ||
                   matchStage === matchStage.TELEOP) && (
                   <Button
