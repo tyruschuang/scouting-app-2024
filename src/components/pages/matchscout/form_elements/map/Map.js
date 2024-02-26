@@ -151,7 +151,7 @@ export default function Map(props) {
         <Grid2 xs={12} sm={9}>
           <Stack
             direction={"column"}
-            spacing={2}
+            spacing={1}
             sx={{
               display: "flex",
               alignItems: "center",
@@ -231,20 +231,6 @@ export default function Map(props) {
         </Grid2>
       </Grid2>
 
-      <Undo
-        data={data}
-        update={() => {
-          if (gamePieceCounter === 1) {
-            return;
-          }
-          if (gamePieceCounter === 2 && matchStage === MatchStage.AUTO) {
-            setSelectedIntakeLocation(0);
-          }
-          setGamePieceCounter(gamePieceCounter - 1);
-          update();
-          updateHistory();
-        }}
-      />
       <CustomToggleButton
         label={"Show Record"}
         value={showHistory}
@@ -252,18 +238,11 @@ export default function Map(props) {
           setShowHistory(newValue);
           update();
         }}
-        sx={{
-          mt: 2,
-        }}
         showCheckbox
       />
       <Collapse in={showHistory}>
         <Stack
           direction={"column"}
-          spacing={2}
-          sx={{
-            mt: 2,
-          }}
         >
           {/* eslint-disable-next-line array-callback-return */}
           {[...Array(30).keys()].map((i) => {
@@ -307,6 +286,20 @@ export default function Map(props) {
           })}
         </Stack>
       </Collapse>
+        <Undo
+            data={data}
+            update={() => {
+                if (gamePieceCounter === 1) {
+                    return;
+                }
+                if (gamePieceCounter === 2 && matchStage === MatchStage.AUTO) {
+                    setSelectedIntakeLocation(0);
+                }
+                setGamePieceCounter(gamePieceCounter - 1);
+                update();
+                updateHistory();
+            }}
+        />
     </>
   );
 }

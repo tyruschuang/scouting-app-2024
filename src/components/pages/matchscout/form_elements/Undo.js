@@ -7,10 +7,6 @@ export default function Undo(props) {
     const update = props.update;
 
     return (
-        <>
-            <Divider sx={{
-                my: 3
-            }}/>
             <Button onClick={() => {
                 data.undo()
                 update()
@@ -19,7 +15,6 @@ export default function Undo(props) {
                     variant={"outlined"}>
                 Undo
             </Button>
-        </>
     )
 
 }
