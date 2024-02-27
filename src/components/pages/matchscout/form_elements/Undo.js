@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Divider} from '@mui/material';
+import {Button} from '@mui/material';
 
 export default function Undo(props) {
 
@@ -7,14 +7,14 @@ export default function Undo(props) {
     const update = props.update;
 
     return (
-            <Button onClick={() => {
-                data.undo()
-                update()
-            }} fullWidth
-                    color={"secondary"}
-                    variant={"outlined"}>
-                Undo
-            </Button>
+        <Button onClick={() => {
+            data.undo()
+            update()
+        }} fullWidth
+                color={"secondary"}
+                variant={"outlined"}>
+            Undo
+        </Button>
     )
 
 }

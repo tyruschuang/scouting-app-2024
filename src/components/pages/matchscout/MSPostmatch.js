@@ -1,12 +1,8 @@
 import Grid2 from "@mui/material/Unstable_Grid2";
-import {Box, Collapse, Slider, Stack} from "@mui/material";
 import {useState} from "react";
 import {MatchStage} from "../../MatchConstants";
 import Undo from "./form_elements/Undo";
 import CustomInput from "./form_elements/CustomInput";
-import CustomToggleButton from "./form_elements/CustomToggleButton";
-import CustomRating from "./form_elements/CustomRating";
-import SmallNumberCounter from "./form_elements/SmallNumberCounter";
 
 export default function MSPostmatch(props) {
     const [data, _] = useState(props.data);
