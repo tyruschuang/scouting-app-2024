@@ -12,6 +12,9 @@ import {
 } from '@mui/material';
 import SmallNumberCounter from "./matchscout/form_elements/SmallNumberCounter";
 import CustomInput from "./matchscout/form_elements/CustomInput";
+import { collection, addDoc, setDoc, doc, getFirestore } from 'firebase/firestore';
+
+
 
 const PitScout = (props) => {
     const [teamNumber, setTeamNumber] = useState('');
@@ -20,7 +23,6 @@ const PitScout = (props) => {
     const [intake, setIntake] = useState("");
     const [outtake, setOuttake] = useState("");
     const [robotType, setRobotType] = useState("");
-    const [isPhotoCaptured, setPhotoCaptured] = useState(false);
     const [understage, setUnderstage] = useState(false);
     const [batteryNumber, setBatteryNumber] = useState(0);
     const [extraNotes, setExtraNotes] = useState("");
@@ -49,16 +51,6 @@ const PitScout = (props) => {
         setRobotType(event.target.value)
     }
 
-    const handleCapturePhoto = async () => {
-        // Access the Camera component to capture a photo
-        try {
-            const photo = await this.camera.capture(); // Assuming react-camera-pro provides an asynchronous capture method
-            setPhotoCaptured(true);
-        } catch (error) {
-            console.error('Error capturing photo:', error);
-        }
-    };
-
     const handleUnderstage = () => {
         if (understage) {
             setUnderstage(false);
@@ -74,33 +66,36 @@ const PitScout = (props) => {
     }
 
     const handleExtraNotes = (newValue) => {
-        if (newValue === '' || (!isNaN(newValue) && newValue >= 0)) {
-            setExtraNotes(newValue);
-        }
+            setExtraNotes(newValue); 
     }
-
-    const handleSubmit = () => {
+    
+    const handleSubmit = async () => {
+        const pitData = {teamNumber: teamNumber, 
+            drivetrain: drivetrain,
+            intake: intake,
+            outtake: outtake,
+            robotType: robotType,
+            understage: understage,
+            batteryNumber: batteryNumber,
+            extraNotes: extraNotes
+            }
         // You can handle the form submission logic here
         console.log(`Scouting Team ${teamNumber}'s pit with features: ${robotFeatures}`);
         // Add further logic as needed
+        const db = getFirestore();
+        await setDoc(doc(db, "pitData", teamNumber), 
+        pitData
+    );
+    window.location.reload();
     };
-
+  
     return (
         <Container maxWidth="md" style={{padding: '20px', marginTop: '20px'}}>
             <Stack direction={"column"} spacing={2}>
                 <Typography variant="h4" gutterBottom>
                     Pit Scouting Form
                 </Typography>
-                <Typography variant="body1" paragraph>
-                    Use buttons to toggle and capture photos for the pit scouting process.
-                </Typography>
-                {/*<Camera*/}
-                {/*  style={{ width: '100%', height: 'auto' }}*/}
-                {/*  ref={(cam) => (this.camera = cam)}*/}
-                {/*/>*/}
-                <Button variant={isPhotoCaptured ? 'contained' : 'outlined'} fullWidth onClick={handleCapturePhoto}>
-                    {isPhotoCaptured ? 'Photo Captured' : 'Capture Photo'}
-                </Button>
+               
                 <TextField
                     label="Team Number"
                     variant="outlined"
@@ -145,16 +140,14 @@ const PitScout = (props) => {
                     onChange={handleIntake}
                 />
                 <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Outtake</InputLabel>
-                    <Select
-                        fullWidth
-                        margin="normal"
-                        value={outtake}
-                        label={"Outtake"}
-                        onChange={handleOuttake}>
-                        <MenuItem value={0}></MenuItem>
-                        <MenuItem value={1}>Outtake Options</MenuItem>
-                    </Select>
+                    <TextField
+                    label="Outtake"
+                    variant="outlined"
+                    multiline
+                    rows={1}
+                    value={outtake}
+                    onChange={handleOuttake}
+                />
                 </FormControl>
                 {/* <TextField
                     label="Robot Features"
