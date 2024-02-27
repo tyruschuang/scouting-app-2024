@@ -1,12 +1,8 @@
 import Grid2 from "@mui/material/Unstable_Grid2";
-import {Box, Collapse, Slider, Stack} from "@mui/material";
 import {useState} from "react";
 import {MatchStage} from "../../MatchConstants";
 import Undo from "./form_elements/Undo";
 import CustomInput from "./form_elements/CustomInput";
-import CustomToggleButton from "./form_elements/CustomToggleButton";
-import CustomRating from "./form_elements/CustomRating";
-import SmallNumberCounter from "./form_elements/SmallNumberCounter";
 
 export default function MSPostmatch(props) {
     const [data, _] = useState(props.data);
@@ -31,7 +27,7 @@ export default function MSPostmatch(props) {
                     description={"Did this team help or hinder their alliance? Lower numbers indicate hinder, and vice versa."}
                     label={"Score"}
                 /> */}
-                <CustomToggleButton
+                {/* <CustomToggleButton
                     label={"Has Human Player on Alliance?"}
                     value={data.get(MatchStage.POST_MATCH, "player")}
                     onClick={(newValue) => {
@@ -55,7 +51,7 @@ export default function MSPostmatch(props) {
                         label={"high note(s)"}
                         max={3}
                     />
-                </Collapse>
+                </Collapse> */}
                 <CustomInput
                     required={false}
                     label={"Extra Comments"}

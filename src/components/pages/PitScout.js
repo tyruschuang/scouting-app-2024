@@ -1,5 +1,15 @@
 import React, {useState} from 'react';
-import {Button, Container, FormControl, InputLabel, Select, MenuItem, Stack, TextField, Typography} from '@mui/material';
+import {
+    Button,
+    Container,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Select,
+    Stack,
+    TextField,
+    Typography
+} from '@mui/material';
 import SmallNumberCounter from "./matchscout/form_elements/SmallNumberCounter";
 import CustomInput from "./matchscout/form_elements/CustomInput";
 import { collection, addDoc, setDoc, doc, getFirestore } from 'firebase/firestore';
@@ -44,16 +54,15 @@ const PitScout = (props) => {
     const handleUnderstage = () => {
         if (understage) {
             setUnderstage(false);
-        }
-        else {
+        } else {
             setUnderstage(true);
         }
     }
 
     const handleBatteryNumber = (newValue) => {
         if (newValue === '' || (!isNaN(newValue) && newValue >= 0)) {
-            setBatteryNumber(newValue); 
-        }      
+            setBatteryNumber(newValue);
+        }
     }
 
     const handleExtraNotes = (newValue) => {
@@ -154,7 +163,7 @@ const PitScout = (props) => {
                     fullWidth
                     variant={understage ? "contained" : "outlined"}
                     color={understage ? "primary" : "white"}
-                    onClick={()=>{
+                    onClick={() => {
                         handleUnderstage();
                     }}
                 >

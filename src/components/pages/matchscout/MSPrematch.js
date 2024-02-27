@@ -105,14 +105,12 @@ export default function MSPrematch(props) {
                     }}
                 />
             </Grid2>
-            <Divider sx={{
-                my: 2
-            }}/>
-            <Button
-                fullWidth
-                color={"primary"}
-                variant={"outlined"}
-            >
+            <Divider
+                sx={{
+                    my: 2,
+                }}
+            />
+            <Button fullWidth color={"secondary"} variant={"outlined"}>
                 Skip
             </Button>
         </>

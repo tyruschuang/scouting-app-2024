@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import {AutoIntakePosition, getMarkerLabel, MatchStage} from "../../../../MatchConstants";
+import {AutoIntakePosition, getMarkerLabel, MatchStage,} from "../../../../MatchConstants";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import {Box, Button, Collapse, Divider, IconButton, Stack, Typography} from "@mui/material";
+import {Box, Button, Collapse, Divider, IconButton, Stack, Typography,} from "@mui/material";
 import CustomToggleButton from "../CustomToggleButton";
 import {Constants} from "../../../../../Constants";
 import Undo from "../Undo";
@@ -9,7 +9,6 @@ import Marker from "./Marker";
 import CloseIcon from "@mui/icons-material/Close";
 
 export default function Map(props) {
-
     const AutoMarkers = [
         <AutoMarker label={"Wing Ring #1"} x={17.5} y={14.25} id={1} type={1}/>,
         <AutoMarker label={"Wing Ring #2"} x={17.5} y={31.25} id={2} type={1}/>,
@@ -21,14 +20,14 @@ export default function Map(props) {
         <AutoMarker label={"Center Ring #5"} x={50} y={87} id={8} type={1}/>,
         <AutoMarker label={"Speaker Outtake"} x={5} y={31.25} id={1} type={0}/>,
         <AutoMarker label={"Amp Outtake"} x={11} y={5} id={2} type={0}/>,
-        <AutoMarker label={"Trap Outtake"} x={29.5} y={49} id={5} type={0}/>
+        <AutoMarker label={"Trap Outtake"} x={29.5} y={49} id={5} type={0}/>,
     ];
     const TeleopMarkers = [
         <AutoMarker label={"Source"} x={94.0} y={85.25} id={1} type={1}/>,
         <AutoMarker label={"Ground"} x={17.5} y={75.25} id={2} type={1}/>,
         <AutoMarker label={"Speaker Outtake"} x={5} y={31.25} id={1} type={0}/>,
         <AutoMarker label={"Amp Outtake"} x={11} y={5} id={2} type={0}/>,
-        <AutoMarker label={"Trap Outtake"} x={29.5} y={49} id={5} type={0}/>
+        <AutoMarker label={"Trap Outtake"} x={29.5} y={49} id={5} type={0}/>,
     ];
 
     function AutoMarker(props) {
@@ -40,13 +39,12 @@ export default function Map(props) {
                 id={props.id}
                 type={props.type}
                 matchStage={matchStage}
-
                 selectedIntakeLocation={selectedIntakeLocation}
                 setSelectedIntakeLocation={setSelectedIntakeLocation}
                 history={history}
                 confirmOuttake={confirmOuttake}
             />
-        )
+        );
     }
 
     const type = props.type;
@@ -58,17 +56,19 @@ export default function Map(props) {
 
     const [showHistory, setShowHistory] = useState(false);
 
-    const [selectedIntakeLocation, setSelectedIntakeLocation] = useState(props.selectedIntakeLocation);
+    const [selectedIntakeLocation, setSelectedIntakeLocation] = useState(
+        props.selectedIntakeLocation
+    );
     const [gamePieceCounter, setGamePieceCounter] = useState(1);
     const [history, setHistory] = useState([]);
 
     const [missedSelected, setMissedSelected] = useState(false);
 
-    const update = props.update
+    const update = props.update;
 
     const confirmOuttake = (type) => {
         if (missedSelected) {
-            type = `MISSED ${type}`
+            type = `MISSED ${type}`;
         }
         data.setIO(
             matchStage,
@@ -76,12 +76,7 @@ export default function Map(props) {
             "intake",
             getMarkerLabel(matchStage, 1, selectedIntakeLocation)
         );
-        data.setIO(
-            matchStage,
-            gamePieceCounter - 1,
-            "outtake",
-            type
-        )
+        data.setIO(matchStage, gamePieceCounter - 1, "outtake", type);
         setHistory([...history, selectedIntakeLocation]);
         setSelectedIntakeLocation(-1);
         setGamePieceCounter(gamePieceCounter + 1);
@@ -144,7 +139,7 @@ export default function Map(props) {
                 <Grid2 xs={12} sm={9}>
                     <Stack
                         direction={"column"}
-                        spacing={2}
+                        spacing={1}
                         sx={{
                             display: "flex",
                             alignItems: "center",
@@ -166,7 +161,7 @@ export default function Map(props) {
                                 }}
                             />
                             {markers.map((marker) => {
-                                return marker
+                                return marker;
                             })}
                             <Box
                                 sx={{
@@ -180,7 +175,7 @@ export default function Map(props) {
                                 }}
                             >
                                 <Button
-                                    fullWidth
+                                    sx={{width: "128px"}}
                                     disabled={selectedIntakeLocation === -1}
                                     variant={"contained"}
                                     color={missedSelected ? "unselected" : "error"}
@@ -191,37 +186,39 @@ export default function Map(props) {
                                     Missed
                                 </Button>
                                 <Divider sx={{my: 1}}></Divider>
-                                <Button
-                                    fullWidth
-                                    disabled={selectedIntakeLocation === -1}
-                                    variant={"contained"}
-                                    color={"error"}
-                                    onClick={() => {
-                                        confirmOuttake("DROPPED");
-                                    }}
-                                >
-                                    Dropped
-                                </Button>
-                                <Divider sx={{my: 1}}></Divider>
-                                {(gamePieceCounter === 1 || matchStage === matchStage.TELEOP) &&
-                                <Button
-                                    fullWidth
-                                    disabled={selectedIntakeLocation !== -1}
-                                    variant={"contained"}
-                                    color={"secondary"}
-                                    onClick={() => {
-                                        setSelectedIntakeLocation(0)
-                                        
-                                    }}
+                                {/* <Button
+                    sx={{width: "128px"}}
+                    disabled={selectedIntakeLocation === -1}
+                    variant={"contained"}
+                    color={"error"}
+                    onClick={() => {
+                        confirmOuttake("DROPPED");
+                    }}
+                >
+                  Dropped
+                </Button>
+                <Divider sx={{ my: 1 }}></Divider> */}
+                                {(gamePieceCounter === 1 &&
+                                    matchStage === MatchStage.TELEOP) && (
+                                    <Button
+                                        sx={{width: "128px"}}
+                                        disabled={selectedIntakeLocation !== -1}
+                                        variant={"contained"}
+                                        color={"secondary"}
+                                        onClick={() => {
+                                            setSelectedIntakeLocation(0);
+                                        }}
                                     >
-                                    Pre-loaded
-                                </Button>}
+                                        Pre-loaded
+                                    </Button>
+                                )}
                             </Box>
                         </Box>
                         <Typography variant={"h6"}>Note #{gamePieceCounter}</Typography>
                     </Stack>
                 </Grid2>
             </Grid2>
+
             <CustomToggleButton
                 label={"Show Record"}
                 value={showHistory}
@@ -229,45 +226,48 @@ export default function Map(props) {
                     setShowHistory(newValue);
                     update();
                 }}
-                sx={{
-                    mt: 2,
-                }}
                 showCheckbox
             />
             <Collapse in={showHistory}>
                 <Stack
                     direction={"column"}
-                    spacing={2}
-                    sx={{
-                        mt: 2,
-                    }}
                 >
                     {/* eslint-disable-next-line array-callback-return */}
                     {[...Array(30).keys()].map((i) => {
-                        if (data.getIO(matchStage, i, `outtake`) !== undefined && data.getIO(matchStage, i, `intake`) !== undefined) {
+                        if (
+                            data.getIO(matchStage, i, `outtake`) !== undefined &&
+                            data.getIO(matchStage, i, `intake`) !== undefined
+                        ) {
                             return (
-                                <Box sx={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    justifyContent: "space-between",
-                                }}>
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        justifyContent: "space-between",
+                                    }}
+                                >
                                     <Typography variant={"subtitle1"}>
                                         Game Piece #{i + 1}: {data.getIO(matchStage, i, `intake`)}{" "}
                                         -> {data.getIO(matchStage, i, `outtake`)}
                                     </Typography>
-                                    {((i !== 0 && matchStage === MatchStage.AUTO) || (matchStage === MatchStage.TELEOP)) &&
-                                        <IconButton size={"small"} sx={{
-                                            top: -3,
-                                        }} color={"primary"} onClick={(event) => {
-                                            data.clearIO(matchStage, i)
-                                            setGamePieceCounter(gamePieceCounter - 1)
-                                            updateHistory();
-                                            update();
-                                        }
-                                        }>
+                                    {((i !== 0 && matchStage === MatchStage.AUTO) ||
+                                        matchStage === MatchStage.TELEOP) && (
+                                        <IconButton
+                                            size={"small"}
+                                            sx={{
+                                                top: -3,
+                                            }}
+                                            color={"primary"}
+                                            onClick={(event) => {
+                                                data.clearIO(matchStage, i);
+                                                setGamePieceCounter(gamePieceCounter - 1);
+                                                updateHistory();
+                                                update();
+                                            }}
+                                        >
                                             <CloseIcon fontSize={"small"}/>
                                         </IconButton>
-                                    }
+                                    )}
                                 </Box>
                             );
                         }
@@ -289,5 +289,5 @@ export default function Map(props) {
                 }}
             />
         </>
-    )
+    );
 }

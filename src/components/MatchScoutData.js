@@ -1,6 +1,6 @@
 import {MatchStage} from "./MatchConstants";
 import {Scouters} from "./Scouters";
-import { collection, addDoc, setDoc, doc, getFirestore } from 'firebase/firestore';
+import {doc, getFirestore, setDoc,} from "firebase/firestore";
 
 const defaultData = [
     {
@@ -41,7 +41,7 @@ const defaultData = [
         timestamp: new Date(),
     },
 ];
-  export default class MatchScoutData {
+export default class MatchScoutData {
     constructor() {
         this.stage = MatchStage.PRE_MATCH;
         this.data = defaultData;
@@ -132,60 +132,92 @@ const defaultData = [
             return validation;
         }
         // console.log(defaultData)
-        var autoiocount=0
-        autoiocount += defaultData[1].io.filter(function(x){ return Object.keys(x).length !== 0}).length;
-        var teleiocount=0
-        teleiocount += defaultData[2].io.filter(function(x){ return Object.keys(x).length !== 0}).length;
+        var autoiocount = 0;
+        autoiocount += defaultData[1].io.filter(function (x) {
+            return Object.keys(x).length !== 0;
+        }).length;
+        var teleiocount = 0;
+        teleiocount += defaultData[2].io.filter(function (x) {
+            return Object.keys(x).length !== 0;
+        }).length;
         // Add extra metadata
         this.set(MatchStage.METADATA, "timestamp", Date.now());
         const db = getFirestore();
-        const autointake = []
-        const teleintake = []
-        var autotrapcount = 0
-        var autospeakercount = 0
-        var autoampcount = 0
-        var teletrapcount = 0
-        var telespeakercount = 0
-        var teleampcount = 0
-        var telegroundcount = 0
-        var telesourcecount = 0
-        for (let i = 0; i < defaultData[1].io.filter(function(x){ return Object.keys(x).length !== 0}).length; i++) {
-            autointake.push(defaultData[1].io[i].intake)
-        } 
-        for (let i = 0; i < defaultData[2].io.filter(function(x){ return Object.keys(x).length !== 0}).length; i++) {
-            teleintake.push(defaultData[2].io[i].intake)
-        } 
-        for (let i = 0; i < defaultData[1].io.filter(function(x){ return Object.keys(x).length !== 0}).length; i++) {
+        const autointake = [];
+        const teleintake = [];
+        var autotrapcount = 0;
+        var autospeakercount = 0;
+        var autoampcount = 0;
+        var teletrapcount = 0;
+        var telespeakercount = 0;
+        var teleampcount = 0;
+        var telegroundcount = 0;
+        var telesourcecount = 0;
+        for (
+            let i = 0;
+            i <
+            defaultData[1].io.filter(function (x) {
+                return Object.keys(x).length !== 0;
+            }).length;
+            i++
+        ) {
+            autointake.push(defaultData[1].io[i].intake);
+        }
+        for (
+            let i = 0;
+            i <
+            defaultData[2].io.filter(function (x) {
+                return Object.keys(x).length !== 0;
+            }).length;
+            i++
+        ) {
+            teleintake.push(defaultData[2].io[i].intake);
+        }
+        for (
+            let i = 0;
+            i <
+            defaultData[1].io.filter(function (x) {
+                return Object.keys(x).length !== 0;
+            }).length;
+            i++
+        ) {
             if (defaultData[1].io[i].outtake == "TRAP") {
-                autotrapcount +=1;
+                autotrapcount += 1;
             }
             if (defaultData[1].io[i].outtake == "SPEAKER") {
-                autospeakercount +=1;
+                autospeakercount += 1;
             }
             if (defaultData[1].io[i].outtake == "AMP") {
-                autoampcount +=1;
-            
+                autoampcount += 1;
             }
-        } 
-        for (let i = 0; i < defaultData[2].io.filter(function(x){ return Object.keys(x).length !== 0}).length; i++) {
+        }
+        for (
+            let i = 0;
+            i <
+            defaultData[2].io.filter(function (x) {
+                return Object.keys(x).length !== 0;
+            }).length;
+            i++
+        ) {
             if (defaultData[2].io[i].outtake == "TRAP") {
-                teletrapcount +=1;
+                teletrapcount += 1;
             }
             if (defaultData[2].io[i].outtake == "SPEAKER") {
-                teletrapcount +=1;
+                telespeakercount += 1;
             }
             if (defaultData[2].io[i].outtake == "AMP") {
-                teletrapcount +=1;
+                teleampcount += 1;
             }
             if (defaultData[2].io[i].intake == "GROUND") {
-                telegroundcount +=1;
+                telegroundcount += 1;
             }
             if (defaultData[2].io[i].intake == "SOURCE") {
-                telesourcecount +=1;
+                telesourcecount += 1;
             }
         }
         // console.log(autotrapcount)
-        var firebaseData = { autointake: autointake,
+        var firebaseData = {
+            autointake: autointake,
             teleintake: teleintake,
             autoiocount: autoiocount,
             teleiocount: teleiocount,
@@ -196,18 +228,19 @@ const defaultData = [
             telespeakercount: telespeakercount,
             teleampcount: teleampcount,
             telegroundcount: telegroundcount,
-            telesourcecount: telesourcecount
+            telesourcecount: telesourcecount,
         };
-        
-        for (const key in defaultData){
-            for (const inner in defaultData[key]){
-            //   console.log(`${inner}:${defaultData[key][inner]}`);
-              firebaseData[`${inner}`] = `${defaultData[key][inner]}`;
+
+        for (const key in defaultData) {
+            for (const inner in defaultData[key]) {
+                //   console.log(`${inner}:${defaultData[key][inner]}`);
+                firebaseData[`${inner}`] = `${defaultData[key][inner]}`;
             }
-          }
-          delete firebaseData.io;
+        }
+        delete firebaseData.io;
         // TODO: submit data to server
-        await setDoc(doc(db, "testData", defaultData[0].team+"_"+defaultData[0].match), 
+        await setDoc(
+            doc(db, "testData", defaultData[0].team + "_" + defaultData[0].match),
             firebaseData
         );
 
@@ -223,7 +256,7 @@ const defaultData = [
     }
 
     validate(submit = false) {
-        return {valid: true, message: ""}
+        return {valid: true, message: ""};
 
         let alert = null;
         if (this.stage !== MatchStage.POST_MATCH && submit)
