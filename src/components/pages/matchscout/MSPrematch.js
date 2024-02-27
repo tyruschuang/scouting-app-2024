@@ -5,7 +5,7 @@ import {MatchStage} from "../../MatchConstants";
 import CustomAutocomplete from "./form_elements/CustomAutocomplete";
 
 import CustomInput from "./form_elements/CustomInput";
-import {Button, Divider} from "@mui/material";
+import {Box, Button, Divider} from "@mui/material";
 
 export default function MSPrematch(props) {
     const [data, _] = useState(props.data);
@@ -65,25 +65,6 @@ export default function MSPrematch(props) {
                         update();
                     }}
                 />
-                {/*<Button*/}
-                {/*  variant="contained"*/}
-                {/*  style={{*/}
-                {/*    backgroundColor: allianceColor,*/}
-                {/*    color: "#FFFFFF",*/}
-                {/*    marginLeft: "8px",*/}
-                {/*    width: "120px", // Adjust the width as needed*/}
-                {/*    textTransform: "none",*/}
-                {/*  }}*/}
-                {/*  onClick={() =>*/}
-                {/*    handleAllianceChange(*/}
-                {/*      data.get(MatchStage.PRE_MATCH, "alliance") === "RED "*/}
-                {/*        ? "BLUE"*/}
-                {/*        : "RED "*/}
-                {/*    )*/}
-                {/*  }*/}
-                {/*>*/}
-                {/*  Alliance**/}
-                {/*</Button>*/}
                 <CustomAutocomplete
                     small
                     label={"Driver Station"}
@@ -105,11 +86,9 @@ export default function MSPrematch(props) {
                     }}
                 />
             </Grid2>
-            <Divider
-                sx={{
-                    my: 2,
-                }}
-            />
+            <Box sx={{
+                my: 4
+            }} />
             <Button fullWidth color={"secondary"} variant={"outlined"}>
                 Skip
             </Button>
