@@ -3,6 +3,7 @@ import {useState} from "react";
 import {MatchStage} from "../../MatchConstants";
 import Undo from "./form_elements/Undo";
 import CustomInput from "./form_elements/CustomInput";
+import {Box} from "@mui/material";
 
 export default function MSPostmatch(props) {
     const [data, _] = useState(props.data);
@@ -17,41 +18,6 @@ export default function MSPostmatch(props) {
     return (
         <>
             <Grid2 container spacing={3}>
-                {/* <CustomRating
-                    value={data.get(MatchStage.POST_MATCH, "rating")}
-                    onChange={(newValue) => {
-                        data.set(MatchStage.POST_MATCH, "rating", newValue);
-                        update();
-                    }}
-                    title={"Cooperation rating"}
-                    description={"Did this team help or hinder their alliance? Lower numbers indicate hinder, and vice versa."}
-                    label={"Score"}
-                /> */}
-                {/* <CustomToggleButton
-                    label={"Has Human Player on Alliance?"}
-                    value={data.get(MatchStage.POST_MATCH, "player")}
-                    onClick={(newValue) => {
-                        data.set(MatchStage.POST_MATCH, "player", newValue);
-                        data.set(MatchStage.POST_MATCH, "onstage", newValue);
-                        update();
-                    }}
-                    showCheckbox
-                />
-                <Collapse in={data.get(MatchStage.POST_MATCH, "onstage")}>
-                    <CustomRating
-                        onChange={(newValue) => {
-                            data.set(MatchStage.POST_MATCH, "highNotes", newValue);
-                            update();
-                        }}
-                        value={data.get(MatchStage.POST_MATCH, "highNotes")}
-                        title={"High Notes Scored"}
-                        description={
-                            "How many high notes did the human player score."
-                        }
-                        label={"high note(s)"}
-                        max={3}
-                    />
-                </Collapse> */}
                 <CustomInput
                     required={false}
                     label={"Extra Comments"}
@@ -82,6 +48,9 @@ export default function MSPostmatch(props) {
                     }}
                 />
             </Grid2>
+            <Box sx={{
+                mt: 3,
+            }} />
             <Undo data={data} update={() => update()}/>
         </>
     );
