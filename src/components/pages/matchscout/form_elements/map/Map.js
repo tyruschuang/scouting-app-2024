@@ -186,18 +186,6 @@ export default function Map(props) {
                                     Missed
                                 </Button>
                                 <Divider sx={{my: 1}}></Divider>
-                                {/* <Button
-                    sx={{width: "128px"}}
-                    disabled={selectedIntakeLocation === -1}
-                    variant={"contained"}
-                    color={"error"}
-                    onClick={() => {
-                        confirmOuttake("DROPPED");
-                    }}
-                >
-                  Dropped
-                </Button>
-                <Divider sx={{ my: 1 }}></Divider> */}
                                 {(gamePieceCounter === 1 &&
                                     matchStage === MatchStage.TELEOP) && (
                                     <Button
