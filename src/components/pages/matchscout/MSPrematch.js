@@ -28,7 +28,6 @@ export default function MSPrematch(props) {
                         data.set(MatchStage.PRE_MATCH, "name", newValue);
                         update();
                     }}
-                    shouldNotShow
                 />
                 <CustomInput
                     small
@@ -56,7 +55,6 @@ export default function MSPrematch(props) {
                 />
                 <CustomAutocomplete
                     small
-                    shouldNotShow={false}
                     label={"Alliance"}
                     options={["BLUE", "RED"]}
                     value={data.get(MatchStage.PRE_MATCH, "alliance")}

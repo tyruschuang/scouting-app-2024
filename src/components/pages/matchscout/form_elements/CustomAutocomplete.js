@@ -7,7 +7,6 @@ export default function CustomAutocomplete(props) {
     const options = props.options;
     const value = props.value;
     const onChange = props.onChange;
-    const shouldNotShow = props.shouldNotShow;
 
     return (
         <Grid2 xs={(small ? 6 : 12)} sm={6}>
@@ -16,14 +15,6 @@ export default function CustomAutocomplete(props) {
                     id={label}
                     options={options}
                     value={value}
-                    filterOptions={(options, {inputValue}) => {
-                        if (inputValue.trim() === "" && shouldNotShow) {
-                            return [];
-                        }
-                        return options.filter((option) =>
-                            option.toLowerCase().includes(inputValue.toLowerCase())
-                        );
-                    }}
                     renderInput={(params) => (
                         <TextField {...params} label={label} variant={"filled"} required/>
                     )}
