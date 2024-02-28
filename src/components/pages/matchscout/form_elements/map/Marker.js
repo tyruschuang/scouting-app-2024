@@ -53,7 +53,7 @@ export default function Marker(props) {
         <Tooltip title={getMarkerLabel(matchStage, type, id)} placement={"top"} arrow>
             <Box
                 sx={{
-                    width: "6%",
+                    width: "9%",
                     aspectRatio: "1 / 1",
                     position: "absolute",
                     top: `${y}%`,
