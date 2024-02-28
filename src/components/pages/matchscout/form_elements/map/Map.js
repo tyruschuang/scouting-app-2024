@@ -250,24 +250,24 @@ export default function Map(props) {
                                         Game Piece #{i + 1}: {data.getIO(matchStage, i, `intake`)}{" "}
                                         -> {data.getIO(matchStage, i, `outtake`)}
                                     </Typography>
-                                    {((i !== 0 && matchStage === MatchStage.AUTO) ||
-                                        matchStage === MatchStage.TELEOP) && (
-                                        <IconButton
-                                            size={"small"}
-                                            sx={{
-                                                top: -3,
-                                            }}
-                                            color={"primary"}
-                                            onClick={(event) => {
-                                                data.clearIO(matchStage, i);
-                                                setGamePieceCounter(gamePieceCounter - 1);
-                                                updateHistory();
-                                                update();
-                                            }}
-                                        >
-                                            <CloseIcon fontSize={"small"}/>
-                                        </IconButton>
-                                    )}
+                                    {/*{((i !== 0 && matchStage === MatchStage.AUTO) ||*/}
+                                    {/*    matchStage === MatchStage.TELEOP) && (*/}
+                                    {/*    <IconButton*/}
+                                    {/*        size={"small"}*/}
+                                    {/*        sx={{*/}
+                                    {/*            top: -3,*/}
+                                    {/*        }}*/}
+                                    {/*        color={"primary"}*/}
+                                    {/*        onClick={(event) => {*/}
+                                    {/*            data.clearIO(matchStage, i);*/}
+                                    {/*            setGamePieceCounter(gamePieceCounter - 1);*/}
+                                    {/*            updateHistory();*/}
+                                    {/*            update();*/}
+                                    {/*        }}*/}
+                                    {/*    >*/}
+                                    {/*        <CloseIcon fontSize={"small"}/>*/}
+                                    {/*    </IconButton>*/}
+                                    {/*)}*/}
                                 </Box>
                             );
                         }
