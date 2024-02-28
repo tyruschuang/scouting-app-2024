@@ -42,7 +42,6 @@ object Main {
         }
 
         matches.forEach { match ->
-            // Ensure each scouter has the same number of matches, and give a break to each scouter after they did 10 matches
 
         }
 
