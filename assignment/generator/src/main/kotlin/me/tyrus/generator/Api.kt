@@ -1,6 +1,7 @@
 package me.tyrus.generator
 
 import kotlinx.serialization.json.*
+import me.tyrus.generator.data.Match
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -13,7 +14,8 @@ private val JSON = Json {
 }
 
 class Api {
-    fun getMatches() {
+    fun getMatches(): List<Match> {
+        val matches = mutableListOf<Match>()
         val url = URL("$ENDPOINT/event/$EVENT_KEY/matches/simple")
         with(url.openConnection() as HttpURLConnection) {
             requestMethod = "GET"
@@ -24,8 +26,9 @@ class Api {
                 val alliances = match["alliances"]!!.jsonObject
                 val red = alliances["red"]!!.jsonObject["team_keys"]!!.jsonArray.map { it.jsonPrimitive.content }
                 val blue = alliances["blue"]!!.jsonObject["team_keys"]!!.jsonArray.map { it.jsonPrimitive.content }
-                println("Match $number: Red $red, Blue $blue")
+                matches.add(Match(number!!, red.toTypedArray(), blue.toTypedArray()))
             }
         }
+        return matches
     }
 }

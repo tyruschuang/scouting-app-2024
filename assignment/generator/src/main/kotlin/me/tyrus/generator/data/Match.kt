@@ -8,5 +8,8 @@ data class Match(
         number: Int,
         red: Array<String>,
         blue: Array<String>
-    ) : this(number, mapOf(AllianceColor.RED to red, AllianceColor.BLUE to blue)
+    ) : this(number, mapOf(
+        AllianceColor.RED to red.map { it.replace("frc", "").toInt() },
+        AllianceColor.BLUE to blue.map { it.replace("frc", "").toInt() }
+    ))
 }
