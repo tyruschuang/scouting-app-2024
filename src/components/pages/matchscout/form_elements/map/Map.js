@@ -10,9 +10,9 @@ import CloseIcon from "@mui/icons-material/Close";
 
 export default function Map(props) {
     const AutoMarkers = [
-        <UsedMarker label={"Wing Ring #1"} x={17.5} y={14.25} id={1} type={1}/>,
-        <UsedMarker label={"Wing Ring #2"} x={17.5} y={36.25} id={2} type={1}/>,
-        <UsedMarker label={"Wing Ring #3"} x={17.5} y={54.1} id={3} type={1}/>,
+        <UsedMarker label={"Wing Ring #1"} x={17.5} y={10.25} id={1} type={1}/>,
+        <UsedMarker label={"Wing Ring #2"} x={17.5} y={30.25} id={2} type={1}/>,
+        <UsedMarker label={"Wing Ring #3"} x={17.5} y={52.1} id={3} type={1}/>,
         <UsedMarker label={"Center Ring #1"} x={50} y={9} id={4} type={1}/>,
         <UsedMarker label={"Center Ring #2"} x={50} y={28.25} id={5} type={1}/>,
         <UsedMarker label={"Center Ring #3"} x={50} y={48} id={6} type={1}/>,
@@ -180,7 +180,7 @@ export default function Map(props) {
                                     variant={"contained"}
                                     color={missedSelected ? "unselected" : "error"}
                                     onClick={() => {
-                                        setMissedSelected(true);
+                                        setMissedSelected(!missedSelected);
                                     }}
                                 >
                                     Missed
