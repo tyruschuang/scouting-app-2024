@@ -153,6 +153,13 @@ export default class MatchScoutData {
     var teleampcount = 0;
     var telegroundcount = 0;
     var telesourcecount = 0;
+    var missedautoamp = 0;
+    var missedautospeaker = 0;
+    var missedautotrap = 0;
+    var missedteletrap = 0;
+    var missedteleamp = 0;
+    var missedtelespeaker = 0;
+
     for (
       let i = 0;
       i <
@@ -190,6 +197,15 @@ export default class MatchScoutData {
       if (defaultData[1].io[i].outtake == "AMP") {
         autoampcount += 1;
       }
+      if (defaultData[1].io[i].outtake == "MISSED AMP") {
+        missedautoamp += 1;
+      }
+      if (defaultData[1].io[i].outtake == "MISSED SPEAKER") {
+        missedautospeaker += 1;
+      }
+      if (defaultData[1].io[i].outtake == "MISSED TRAP") {
+        missedautotrap += 1;
+      }
     }
     for (
       let i = 0;
@@ -214,6 +230,15 @@ export default class MatchScoutData {
       if (defaultData[2].io[i].intake == "SOURCE") {
         telesourcecount += 1;
       }
+      if (defaultData[2].io[i].intake == "MISSED AMP") {
+        missedteleamp += 1;
+      }
+      if (defaultData[2].io[i].intake == "MISSED SPEAKER") {
+        missedtelespeaker += 1;
+      }
+      if (defaultData[2].io[i].intake == "MISSED TRAP") {
+        missedteletrap += 1;
+      }
     }
     // console.log(autotrapcount)
     var firebaseData = {
@@ -223,12 +248,18 @@ export default class MatchScoutData {
       teleiocount: teleiocount,
       autotrapcount: autotrapcount,
       autospeakercount: autospeakercount,
-      autoampcount: teleampcount,
+      autoampcount: autoampcount,
       teletrapcount: teletrapcount,
       telespeakercount: telespeakercount,
       teleampcount: teleampcount,
       telegroundcount: telegroundcount,
       telesourcecount: telesourcecount,
+      missedautoamp: missedautoamp,
+      missedautospeaker: missedautospeaker,
+      missedautotrap: missedautotrap,
+      missedteleamp: missedteleamp,
+      missedtelespeaker: missedtelespeaker,
+      missedteletrap: missedteletrap,
     };
 
     for (const key in defaultData) {
