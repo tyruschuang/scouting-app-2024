@@ -257,7 +257,7 @@ export default function Map(props) {
       </Collapse>
       <Undo
         data={data}
-        shouldUndoDataCondition={() => {
+        shouldUndoData={() => {
             return selectedIntakeLocation === -1;
         }}
         update={() => {
