@@ -219,6 +219,7 @@ export default function Map(props) {
             />
             <Collapse in={showHistory}>
                 <Stack direction={"column"}>
+                    {/* eslint-disable-next-line array-callback-return */}
                     {[...Array(30).keys()].map((i) => {
                         if (
                             data.getIO(matchStage, i, `outtake`) !== undefined &&
