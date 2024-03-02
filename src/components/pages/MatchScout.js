@@ -10,16 +10,18 @@ import MSTeleop from "./matchscout/MSTeleop";
 import CloseIcon from "@mui/icons-material/Close";
 
 export default function MatchScout() {
-    let data = useMemo(() => new MatchScoutData(), []);
 
-    const [currentComponent, setCurrentComponent] = useState(
-        <MSPrematch data={data}/>
-    );
+
     const [counter, setCounter] = useState(0);
-
     const update = () => {
         setCounter(counter + 1);
     };
+    
+    let data = useMemo(() => new MatchScoutData(), []);
+    
+    const [currentComponent, setCurrentComponent] = useState(
+        <MSPrematch data={data}/>
+    );
 
     useEffect(() => {
         // eslint-disable-next-line default-case
@@ -38,7 +40,7 @@ export default function MatchScout() {
                 break;
         }
     }, [counter]);
-    // TODO: Form and data validation
+
     return (
         <Page>
             <Typography color={"white"} variant={"h3"}>

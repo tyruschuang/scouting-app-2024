@@ -100,7 +100,6 @@ export default class MatchScoutData {
         return this.data[stage]["io"][index][type];
     }
 
-    // TODO: Nothing was undone notification
     undo() {
         if (this.history.length === 0) return;
 
@@ -285,8 +284,6 @@ export default class MatchScoutData {
     }
 
     validate(submit = false) {
-        return {valid: true, message: ""}
-
         let alert = null;
         if (this.stage !== MatchStage.POST_MATCH && submit)
             alert = {
