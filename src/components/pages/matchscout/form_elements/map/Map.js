@@ -257,14 +257,20 @@ export default function Map(props) {
       </Collapse>
       <Undo
         data={data}
+        shouldUndoDataCondition={() => {
+            return selectedIntakeLocation === -1;
+        }}
         update={() => {
           if (gamePieceCounter === 1 && selectedIntakeLocation === -1) {
             return;
           }
           if (selectedIntakeLocation !== -1) {
-            setSelectedIntakeLocation(-1);
-            update();
-            return;
+            if (gamePieceCounter === 1 && matchStage === MatchStage.AUTO) {
+                return;
+            }
+              setSelectedIntakeLocation(-1);
+              update();
+              return;
           }
           if (gamePieceCounter === 2 && matchStage === MatchStage.AUTO) {
             setSelectedIntakeLocation(0);

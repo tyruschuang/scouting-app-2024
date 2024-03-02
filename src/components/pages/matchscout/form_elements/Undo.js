@@ -6,9 +6,11 @@ export default function Undo(props) {
     const data = props.data;
     const update = props.update;
 
+    const shouldUndoDataCondition = props.shouldUndoDataCondition || (() => true);
+
     return (
         <Button onClick={() => {
-            data.undo()
+            if (shouldUndoDataCondition()) data.undo();
             update()
         }} fullWidth
                 color={"secondary"}
