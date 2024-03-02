@@ -50,7 +50,7 @@ export default function MSPostmatch(props) {
             </Grid2>
             <Box sx={{
                 mt: 3,
-            }} />
+            }}/>
             <Undo data={data} update={() => update()}/>
         </>
     );

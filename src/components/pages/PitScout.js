@@ -12,8 +12,7 @@ import {
 } from '@mui/material';
 import SmallNumberCounter from "./matchscout/form_elements/SmallNumberCounter";
 import CustomInput from "./matchscout/form_elements/CustomInput";
-import { collection, addDoc, setDoc, doc, getFirestore } from 'firebase/firestore';
-
+import {doc, getFirestore, setDoc} from 'firebase/firestore';
 
 
 const PitScout = (props) => {
@@ -66,11 +65,12 @@ const PitScout = (props) => {
     }
 
     const handleExtraNotes = (newValue) => {
-            setExtraNotes(newValue); 
+        setExtraNotes(newValue);
     }
-    
+
     const handleSubmit = async () => {
-        const pitData = {teamNumber: teamNumber, 
+        const pitData = {
+            teamNumber: teamNumber,
             drivetrain: drivetrain,
             intake: intake,
             outtake: outtake,
@@ -78,24 +78,24 @@ const PitScout = (props) => {
             understage: understage,
             batteryNumber: batteryNumber,
             extraNotes: extraNotes
-            }
+        }
         // You can handle the form submission logic here
         console.log(`Scouting Team ${teamNumber}'s pit with features: ${robotFeatures}`);
         // Add further logic as needed
         const db = getFirestore();
-        await setDoc(doc(db, "pitData", teamNumber), 
-        pitData
-    );
-    window.location.reload();
+        await setDoc(doc(db, "pitData", teamNumber),
+            pitData
+        );
+        window.location.reload();
     };
-  
+
     return (
         <Container maxWidth="md" style={{padding: '20px', marginTop: '20px'}}>
             <Stack direction={"column"} spacing={2}>
                 <Typography variant="h4" gutterBottom>
                     Pit Scouting Form
                 </Typography>
-               
+
                 <TextField
                     label="Team Number"
                     variant="outlined"
@@ -141,13 +141,13 @@ const PitScout = (props) => {
                 />
                 <FormControl fullWidth>
                     <TextField
-                    label="Outtake"
-                    variant="outlined"
-                    multiline
-                    rows={1}
-                    value={outtake}
-                    onChange={handleOuttake}
-                />
+                        label="Outtake"
+                        variant="outlined"
+                        multiline
+                        rows={1}
+                        value={outtake}
+                        onChange={handleOuttake}
+                    />
                 </FormControl>
                 {/* <TextField
                     label="Robot Features"

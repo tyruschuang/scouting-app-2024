@@ -5,7 +5,7 @@ import {DriverStation, MatchStage, StartPosition} from "../../MatchConstants";
 import CustomAutocomplete from "./form_elements/CustomAutocomplete";
 
 import CustomInput from "./form_elements/CustomInput";
-import {Box, Button, Divider} from "@mui/material";
+import {Box, Button} from "@mui/material";
 
 export default function MSPrematch(props) {
     const [data, _] = useState(props.data);
@@ -86,7 +86,7 @@ export default function MSPrematch(props) {
             </Grid2>
             <Box sx={{
                 my: 4
-            }} />
+            }}/>
             <Button fullWidth color={"secondary"} variant={"outlined"}>
                 Skip
             </Button>
