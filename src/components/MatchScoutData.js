@@ -188,22 +188,22 @@ export default class MatchScoutData {
             }).length;
             i++
         ) {
-            if (defaultData[1].io[i].outtake == "TRAP") {
+            if (defaultData[1].io[i].outtake === "TRAP") {
                 autotrapcount += 1;
             }
-            if (defaultData[1].io[i].outtake == "SPEAKER") {
+            if (defaultData[1].io[i].outtake === "SPEAKER") {
                 autospeakercount += 1;
             }
-            if (defaultData[1].io[i].outtake == "AMP") {
+            if (defaultData[1].io[i].outtake === "AMP") {
                 autoampcount += 1;
             }
-            if (defaultData[1].io[i].outtake == "MISSED AMP") {
+            if (defaultData[1].io[i].outtake === "MISSED AMP") {
                 missedautoamp += 1;
             }
-            if (defaultData[1].io[i].outtake == "MISSED SPEAKER") {
+            if (defaultData[1].io[i].outtake === "MISSED SPEAKER") {
                 missedautospeaker += 1;
             }
-            if (defaultData[1].io[i].outtake == "MISSED TRAP") {
+            if (defaultData[1].io[i].outtake === "MISSED TRAP") {
                 missedautotrap += 1;
             }
         }
@@ -215,28 +215,28 @@ export default class MatchScoutData {
             }).length;
             i++
         ) {
-            if (defaultData[2].io[i].outtake == "TRAP") {
+            if (defaultData[2].io[i].outtake === "TRAP") {
                 teletrapcount += 1;
             }
-            if (defaultData[2].io[i].outtake == "SPEAKER") {
+            if (defaultData[2].io[i].outtake === "SPEAKER") {
                 telespeakercount += 1;
             }
-            if (defaultData[2].io[i].outtake == "AMP") {
+            if (defaultData[2].io[i].outtake === "AMP") {
                 teleampcount += 1;
             }
-            if (defaultData[2].io[i].intake == "GROUND") {
+            if (defaultData[2].io[i].intake === "GROUND") {
                 telegroundcount += 1;
             }
-            if (defaultData[2].io[i].intake == "SOURCE") {
+            if (defaultData[2].io[i].intake === "SOURCE") {
                 telesourcecount += 1;
             }
-            if (defaultData[2].io[i].intake == "MISSED AMP") {
+            if (defaultData[2].io[i].intake === "MISSED AMP") {
                 missedteleamp += 1;
             }
-            if (defaultData[2].io[i].intake == "MISSED SPEAKER") {
+            if (defaultData[2].io[i].intake === "MISSED SPEAKER") {
                 missedtelespeaker += 1;
             }
-            if (defaultData[2].io[i].intake == "MISSED TRAP") {
+            if (defaultData[2].io[i].intake === "MISSED TRAP") {
                 missedteletrap += 1;
             }
         }
@@ -264,12 +264,10 @@ export default class MatchScoutData {
 
         for (const key in defaultData) {
             for (const inner in defaultData[key]) {
-                //   console.log(`${inner}:${defaultData[key][inner]}`);
                 firebaseData[`${inner}`] = `${defaultData[key][inner]}`;
             }
         }
         delete firebaseData.io;
-        // TODO: submit data to server
         await setDoc(
             doc(db, "testData", defaultData[0].team + "_" + defaultData[0].match),
             firebaseData
