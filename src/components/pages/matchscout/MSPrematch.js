@@ -1,7 +1,7 @@
 import {Scouters} from "../../Scouters";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import {useState} from "react";
-import {MatchStage} from "../../MatchConstants";
+import {DriverStation, MatchStage, StartPosition} from "../../MatchConstants";
 import CustomAutocomplete from "./form_elements/CustomAutocomplete";
 
 import CustomInput from "./form_elements/CustomInput";
@@ -66,7 +66,7 @@ export default function MSPrematch(props) {
                 <CustomAutocomplete
                     small
                     label={"Driver Station"}
-                    options={["1", "2", "3"]}
+                    options={Object.keys(DriverStation)}
                     value={data.get(MatchStage.PRE_MATCH, "driver_station")}
                     onChange={(newValue) => {
                         data.set(MatchStage.PRE_MATCH, "driver_station", newValue);
@@ -76,7 +76,7 @@ export default function MSPrematch(props) {
                 <CustomAutocomplete
                     small
                     label={"Start Position"}
-                    options={["1", "2", "3"]}
+                    options={Object.keys(StartPosition)}
                     value={data.get(MatchStage.PRE_MATCH, "start_position")}
                     onChange={(newValue) => {
                         data.set(MatchStage.PRE_MATCH, "start_position", newValue);

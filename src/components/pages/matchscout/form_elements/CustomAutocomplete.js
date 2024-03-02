@@ -22,7 +22,7 @@ export default function CustomAutocomplete(props) {
                         onChange(newValue);
                     }}
                     isOptionEqualToValue={(option, value) =>
-                        option.toUpperCase() === value.toUpperCase() || value === ""
+                        (option.toUpperCase() === value.toUpperCase()) || value === ""
                     }
                 />
             </FormControl>

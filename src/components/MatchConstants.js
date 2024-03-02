@@ -34,6 +34,20 @@ export const OuttakePosition = Object.freeze({
     MISSED_TRAP: 7,
 })
 
+export const DriverStation = Object.freeze({
+    AMP: 0,
+    MIDDLE: 1,
+    SOURCE: 2,
+})
+
+export const StartPosition = Object.freeze({
+    "AMP": 0,
+    "SPEAKER AMP": 1,
+    "SPEAKER MIDDLE": 2,
+    "SPEAKER SOURCE": 3,
+    "SOURCE": 4,
+})
+
 export function getMarkerLabel(stage, type, id) {
     if (type === 0) {
         return Object.keys(OuttakePosition)[id - 1];

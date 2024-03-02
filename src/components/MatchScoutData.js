@@ -1,4 +1,4 @@
-import { MatchStage } from "./MatchConstants";
+import {DriverStation, MatchStage, StartPosition} from "./MatchConstants";
 import { Scouters } from "./Scouters";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 
@@ -306,7 +306,7 @@ export default class MatchScoutData {
           message: "Please select your team's alliance.",
         };
       else if (
-        !["1", "2", "3"].includes(
+        !Object.keys(DriverStation).includes(
           this.get(MatchStage.PRE_MATCH, "driver_station")
         )
       )
@@ -315,7 +315,7 @@ export default class MatchScoutData {
           message: "Please select your team's driver station.",
         };
       else if (
-        !["1", "2", "3"].includes(
+        !Object.keys(StartPosition).includes(
           this.get(MatchStage.PRE_MATCH, "start_position")
         )
       )
