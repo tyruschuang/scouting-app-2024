@@ -132,7 +132,7 @@ export default class MatchScoutData {
             return validation;
         }
         // console.log(defaultData)
-        var autoiocount = 0;
+        let autoiocount = 0;
         autoiocount += defaultData[1].io.filter(function (x) {
             return Object.keys(x).length !== 0;
         }).length;
@@ -145,20 +145,20 @@ export default class MatchScoutData {
         const db = getFirestore();
         const autointake = [];
         const teleintake = [];
-        var autotrapcount = 0;
-        var autospeakercount = 0;
-        var autoampcount = 0;
-        var teletrapcount = 0;
-        var telespeakercount = 0;
-        var teleampcount = 0;
-        var telegroundcount = 0;
-        var telesourcecount = 0;
-        var missedautoamp = 0;
-        var missedautospeaker = 0;
-        var missedautotrap = 0;
-        var missedteletrap = 0;
-        var missedteleamp = 0;
-        var missedtelespeaker = 0;
+        let autotrapcount = 0;
+        let autospeakercount = 0;
+        let autoampcount = 0;
+        let teletrapcount = 0;
+        let telespeakercount = 0;
+        let teleampcount = 0;
+        let telegroundcount = 0;
+        let telesourcecount = 0;
+        let missedautoamp = 0;
+        let missedautospeaker = 0;
+        let missedautotrap = 0;
+        let missedteletrap = 0;
+        let missedteleamp = 0;
+        let missedtelespeaker = 0;
 
         for (
             let i = 0;
@@ -241,7 +241,7 @@ export default class MatchScoutData {
             }
         }
         // console.log(autotrapcount)
-        var firebaseData = {
+        let firebaseData = {
             autointake: autointake,
             teleintake: teleintake,
             autoiocount: autoiocount,
