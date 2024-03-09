@@ -16,9 +16,9 @@ export default function MatchScout() {
     const update = () => {
         setCounter(counter + 1);
     };
-    
+
     let data = useMemo(() => new MatchScoutData(), []);
-    
+
     const [currentComponent, setCurrentComponent] = useState(
         <MSPrematch data={data}/>
     );
