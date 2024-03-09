@@ -6,8 +6,11 @@ import CustomToggleButton from "../CustomToggleButton";
 import {Constants} from "../../../../../Constants";
 import Undo from "../Undo";
 import Marker from "./Marker";
+import {useCookies} from "react-cookie";
 
 export default function Map(props) {
+    const [cookies, setCookie] = useCookies(['flipMap']);
+
     const AutoMarkers = [
         <UsedMarker label={"Wing Ring #1"} x={17.5} y={10.25} id={1} type={1}/>,
         <UsedMarker label={"Wing Ring #2"} x={17.5} y={30.25} id={2} type={1}/>,
@@ -26,6 +29,28 @@ export default function Map(props) {
         <UsedMarker label={"Ground"} x={17.5} y={75.25} id={2} type={1}/>,
         <UsedMarker label={"Speaker Outtake"} x={5} y={31.25} id={1} type={0}/>,
         <UsedMarker label={"Amp Outtake"} x={11} y={5} id={2} type={0}/>,
+        <UsedMarker label={"Trap Outtake"} x={29.5} y={49} id={5} type={0}/>,
+    ];
+
+    const AutoMarkersFlipped = [
+        <UsedMarker label={"Wing Ring #3"} x={17.5} y={85.25} id={3} type={1}/>,
+        <UsedMarker label={"Wing Ring #2"} x={17.5} y={65.25} id={2} type={1}/>,
+        <UsedMarker label={"Wing Ring #1"} x={17.5} y={44.1} id={1} type={1}/>,
+        <UsedMarker label={"Center Ring #5"} x={50} y={9} id={8} type={1}/>,
+        <UsedMarker label={"Center Ring #4"} x={50} y={28.25} id={7} type={1}/>,
+        <UsedMarker label={"Center Ring #3"} x={50} y={48} id={6} type={1}/>,
+        <UsedMarker label={"Center Ring #2"} x={50} y={67.4} id={5} type={1}/>,
+        <UsedMarker label={"Center Ring #1"} x={50} y={87} id={4} type={1}/>,
+        <UsedMarker label={"Speaker Outtake"} x={5} y={65.25} id={1} type={0}/>,
+        <UsedMarker label={"Amp Outtake"} x={11} y={92} id={2} type={0}/>,
+        <UsedMarker label={"Trap Outtake"} x={29.5} y={49} id={5} type={0}/>,
+    ];
+
+    const TeleopMarkersFlipped = [
+        <UsedMarker label={"Source"} x={94.0} y={9.25} id={1} type={1}/>,
+        <UsedMarker label={"Ground"} x={17.5} y={29.25} id={2} type={1}/>,
+        <UsedMarker label={"Speaker Outtake"} x={5} y={65.25} id={1} type={0}/>,
+        <UsedMarker label={"Amp Outtake"} x={11} y={92} id={2} type={0}/>,
         <UsedMarker label={"Trap Outtake"} x={29.5} y={49} id={5} type={0}/>,
     ];
 
@@ -48,7 +73,7 @@ export default function Map(props) {
 
     const type = props.type;
     const matchStage = type === "auto" ? MatchStage.AUTO : MatchStage.TELEOP;
-    const markers = type === "auto" ? AutoMarkers : TeleopMarkers;
+    const markers = type === "auto" ? (cookies.flipMap ? AutoMarkersFlipped : AutoMarkers) : (cookies.flipMap ? TeleopMarkersFlipped : TeleopMarkers);
 
     const [data, _] = useState(props.data);
     const [showHistory, setShowHistory] = useState(false);
@@ -153,6 +178,7 @@ export default function Map(props) {
                                 sx={{
                                     width: "100%",
                                     height: "auto",
+                                    transform: `scaleY(${cookies.flipMap ? -1 : 1})`,
                                 }}
                             />
                             {markers.map((marker) => {
@@ -161,25 +187,16 @@ export default function Map(props) {
                             <Box
                                 sx={{
                                     position: "absolute",
-                                    top: 0,
+                                    top: (cookies.flipMap ? "25%" : 0),
                                     right: 0,
                                     padding: 1,
+                                    gap: 1,
                                     display: "flex",
                                     flexDirection: "column",
                                     alignItems: "flex-end",
                                 }}
                             >
-                                {missedSelected && (
-                                    <Typography
-                                        variant={"subtitle2"}
-                                        color={"secondary"}
-                                        sx={{textAlign: "right"}}
-                                    >
-                                        Please select what they were trying.
-                                    </Typography>
-                                )}
                                 <Button
-                                    sx={{width: "128px"}}
                                     disabled={selectedIntakeLocation === -1}
                                     variant={"contained"}
                                     color={missedSelected ? "unselected" : "error"}
@@ -191,7 +208,6 @@ export default function Map(props) {
                                 </Button>
                                 {gamePieceCounter === 1 && matchStage === MatchStage.TELEOP && (
                                     <Button
-                                        sx={{width: "128px"}}
                                         disabled={selectedIntakeLocation !== -1}
                                         variant={"contained"}
                                         color={"secondary"}
@@ -243,6 +259,15 @@ export default function Map(props) {
                     })}
                 </Stack>
             </Collapse>
+            <CustomToggleButton
+                label={"Flip Map"}
+                value={cookies.flipMap}
+                onClick={(newValue) => {
+                    setCookie('flipMap', newValue);
+                    update();
+                }}
+                showCheckbox
+            />
             <Undo
                 data={data}
                 shouldUndoData={() => {

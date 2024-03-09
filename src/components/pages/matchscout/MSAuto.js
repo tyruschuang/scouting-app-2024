@@ -3,6 +3,7 @@ import Map from "./form_elements/map/Map";
 import {Stack} from "@mui/material";
 import {MatchStage} from "../../MatchConstants";
 import CustomToggleButton from "./form_elements/CustomToggleButton";
+import {useCookies} from "react-cookie";
 
 export default function MSAuto(props) {
     const [data, _] = useState(props.data);

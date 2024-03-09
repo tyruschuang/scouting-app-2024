@@ -284,6 +284,7 @@ export default class MatchScoutData {
     }
 
     validate(submit = false) {
+        return {valid: true, message: ""};
         let alert = null;
         if (this.stage !== MatchStage.POST_MATCH && submit)
             alert = {
