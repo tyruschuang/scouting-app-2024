@@ -6,8 +6,11 @@ import CustomAutocomplete from "./form_elements/CustomAutocomplete";
 
 import CustomInput from "./form_elements/CustomInput";
 import {Box, Button} from "@mui/material";
+import {useCookies} from "react-cookie";
 
 export default function MSPrematch(props) {
+    const [cookies, setCookie] = useCookies(['name']);
+
     const [data, _] = useState(props.data);
     const [counter, setCounter] = useState(0);
 
@@ -22,9 +25,9 @@ export default function MSPrematch(props) {
                     small
                     label={"Name"}
                     options={Scouters}
-                    value={data.get(MatchStage.PRE_MATCH, "name")}
+                    value={cookies.name || ""}
                     onChange={(newValue) => {
-                        // TODO: Autofill based off of name
+                        setCookie('name', newValue);
                         data.set(MatchStage.PRE_MATCH, "name", newValue);
                         update();
                     }}
