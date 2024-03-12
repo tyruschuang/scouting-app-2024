@@ -9,7 +9,7 @@ import Marker from "./Marker";
 import {useCookies} from "react-cookie";
 
 export default function Map(props) {
-    const [cookies, setCookie] = useCookies(['flipMap']);
+    const [cookies, setCookie] = useCookies();
 
     const AutoMarkers = [
         <UsedMarker label={"Wing Ring #1"} x={17.5} y={10.25} id={1} type={1}/>,

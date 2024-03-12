@@ -9,7 +9,7 @@ import {Box, Button} from "@mui/material";
 import {useCookies} from "react-cookie";
 
 export default function MSPrematch(props) {
-    const [cookies, setCookie] = useCookies(['name']);
+    const [cookies, setCookie] = useCookies();
 
     const [data, _] = useState(props.data);
     const [counter, setCounter] = useState(0);
