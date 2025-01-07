@@ -10,7 +10,7 @@
 
 ## Introduction
 
-Scouting App 2024 is a web-based platform designed for team management and data collection in various scouting scenarios. Developed for the 2024 season, this application aims to streamline processes and enhance decision-making for teams across different disciplines.
+Scouting App 2024 is a web-based platform designed for team management and data collection. Developed for the 2024 FIRST Robotics Season, this application aims to streamline processes and enhance decision-making during the team selection process.
 
 [View Live Site](https://scouting-app-2024.onrender.com/)
 
