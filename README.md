@@ -6,8 +6,6 @@
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Introduction
@@ -26,7 +24,7 @@ Scouting App 2024 is a web-based platform designed for team management and data 
 
 ## Technologies Used
 
-- Frontend: React
+- Frontend: React, MUI
 - Backend: Node.js
 - Database: Firebase Realtime Database
 - Hosting: Render
@@ -49,12 +47,6 @@ To run this project locally:
    ```
    npm start
    ```
-
-## Usage
-
-1. Navigate to [https://scouting-app-2024.onrender.com/](https://scouting-app-2024.onrender.com/)
-2. Sign in using your Firebase credentials
-3. Explore features such as assignment management, data collection, and team collaboration
 
 ## Contributing
 
