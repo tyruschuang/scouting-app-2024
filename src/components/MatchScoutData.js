@@ -140,7 +140,6 @@ export default class MatchScoutData {
         }).length;
         // Add extra metadata
         this.set(MatchStage.METADATA, "timestamp", Date.now());
-        const db = getFirestore();
         const autointake = [];
         const teleintake = [];
         let autotrapcount = 0;
