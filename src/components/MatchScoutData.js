@@ -1,6 +1,5 @@
 import {DriverStation, MatchStage, StartPosition} from "./MatchConstants";
 import {Scouters} from "./Scouters";
-import {doc, getFirestore, setDoc} from "firebase/firestore";
 
 const defaultData = [
     {
@@ -266,12 +265,6 @@ export default class MatchScoutData {
                 firebaseData[`${inner}`] = `${defaultData[key][inner]}`;
             }
         }
-        delete firebaseData.io;
-        await setDoc(
-            doc(db, "testData", defaultData[0].team + "_" + defaultData[0].match),
-            firebaseData
-        );
-
         window.location.reload();
 
         return true;
