@@ -11,7 +11,7 @@ const firebaseConfig = {
     apiKey: "",
     authDomain: "",
     databaseURL: "",
-    projectId: "",
+    projectId: "scoutingapp-2024",
     storageBucket: "",
     messagingSenderId: "",
     appId: "",
